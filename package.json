@@ -1,9 +1,9 @@
 {
-  "name": "alfa-tenis",
+  "name": "tennis-academy-template",
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "homepage": "https://Cuak123.github.io/AlfaTenis",
+  "homepage": "https://github.com/StartYourAcademy",
   "scripts": {
     "dev": "vite",
     "build": "vite build",

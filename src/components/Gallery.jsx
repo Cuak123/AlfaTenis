@@ -1,36 +1,36 @@
 import React from 'react';
 import { Camera, Instagram } from 'lucide-react';
 
-import img1 from '../assets/Gallery/image copy 4.png';
-import img2 from '../assets/Gallery/image copy 5.png';
-import img3 from '../assets/Gallery/image copy 6.png';
-import img4 from '../assets/Gallery/image copy 2.png';
+import galleryTraining from '../assets/Gallery/gallery_training.png';
+import galleryMatch from '../assets/Gallery/gallery_match.png';
+import galleryGroup from '../assets/Gallery/gallery_group.png';
+import galleryKids from '../assets/Gallery/gallery_kids.png';
 
 const images = [
     {
         id: 1,
-        src: img4,
+        src: galleryTraining,
         alt: "Entrenamiento de saque",
         size: "col-span-1 md:col-span-2 row-span-2",
         position: "object-top"
     },
     {
         id: 2,
-        src: img2,
+        src: galleryMatch,
         alt: "Partido de torneo",
         size: "col-span-1",
         position: "object-center"
     },
     {
         id: 3,
-        src: img3,
+        src: galleryKids,
         alt: "Clase de niños",
         size: "col-span-1",
         position: "object-center"
     },
     {
         id: 4,
-        src: img1,
+        src: galleryGroup,
         alt: "Grupo de adultos",
         size: "col-span-1 md:col-span-2",
         position: "object-[center_20%]"
@@ -48,12 +48,12 @@ const Gallery = () => {
                             Galería
                         </span>
                         <h2 className="text-3xl md:text-5xl font-extrabold text-white">
-                            Momentos <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-blue to-white">Alfa</span>
+                            Momentos <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-blue to-white">Tennis Academy</span>
                         </h2>
                     </div>
 
                     <a
-                        href="https://www.instagram.com/alfa.tenis.peru/"
+                        href="#"
                         target="_blank"
                         rel="noopener noreferrer"
                         className="text-gray-400 hover:text-brand-neon transition-colors flex items-center gap-2 font-medium"

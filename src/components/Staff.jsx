@@ -1,14 +1,14 @@
-import React, { useState } from 'react';
-import josephImg from '../assets/Staff/Joseph.png';
-import carlosImg from '../assets/Staff/CarlosBartra.png';
+import coachHead from '../assets/Staff/coach_head.png';
+import coachAssistant from '../assets/Staff/coach_assistant.png';
+import staffAdmin from '../assets/Staff/staff_admin.png';
 import { ChevronUp, X, Award, Clock, Activity } from 'lucide-react';
 
 const staffMembers = [
     {
         id: 1,
-        name: "Joseph",
+        name: "Entrenador Principal",
         role: "Head Coach",
-        image: josephImg,
+        image: coachHead,
         specialization: "Estrategia y Alto Rendimiento",
         experience: "15+ años",
         certificates: ["ITF Level 3", "PTR Professional", "Ex-Jugador ATP"],
@@ -16,20 +16,19 @@ const staffMembers = [
     },
     {
         id: 2,
-        name: "Carlos Bartra",
+        name: "Entrenador Senior",
         role: "Second Coach",
-        image: carlosImg,
+        image: coachAssistant,
         specialization: "Técnica Base y Formación",
         experience: "10+ años",
         certificates: ["ITF Level 2", "Certificación Nacional", "Preparador Físico"],
-        bio: "Apacionado por la enseñanza de los fundamentos técnicos. Carlos tiene un don especial para corregir la biomecánica y prevenir lesiones."
+        bio: "Apacionado por la enseñanza de los fundamentos técnicos. Tiene un don especial para corregir la biomecánica y prevenir lesiones."
     },
     {
         id: 3,
-        name: "Cristina",
+        name: "Coordinación",
         role: "Administradora",
-        // Fallback/Placeholder if no image exists
-        image: "https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?q=80&w=2574&auto=format&fit=crop",
+        image: staffAdmin,
         specialization: "Gestión Deportiva",
         experience: "8+ años",
         certificates: ["MBA Gestión Deportiva", "Coordinación de Eventos"],

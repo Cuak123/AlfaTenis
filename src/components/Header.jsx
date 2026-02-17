@@ -12,7 +12,8 @@ const Header = () => {
             setIsScrolled(window.scrollY > 20);
 
             // Active Section Logic
-            const sections = ['inicio', 'programas', 'profesores', 'torneos', 'ranking', 'contacto'];
+            // 'competicion' replaces 'torneos' and 'ranking'
+            const sections = ['inicio', 'programas', 'profesores', 'competicion', 'contacto'];
             const scrollPosition = window.scrollY + 100; // Offset for header height
 
             for (const section of sections) {
@@ -26,6 +27,14 @@ const Header = () => {
         return () => window.removeEventListener('scroll', handleScroll);
     }, []);
 
+    const navItems = [
+        { name: 'Inicio', id: 'inicio' },
+        { name: 'Programas', id: 'programas' },
+        { name: 'Profesores', id: 'profesores' },
+        { name: 'Competición', id: 'competicion' },
+        { name: 'Contacto', id: 'contacto' }
+    ];
+
     return (
         <header
             className={`fixed w-full z-50 transition-all duration-300 ${isScrolled
@@ -38,20 +47,20 @@ const Header = () => {
                 <div className="flex items-center space-x-2">
                     {/* Placeholder for real logo, using text for now */}
                     <span className="text-2xl font-extrabold tracking-tighter text-white">
-                        ALFA <span className="text-brand-blue">TENIS</span>
+                        TENNIS <span className="text-brand-blue">ACADEMY</span>
                     </span>
                 </div>
 
                 {/* Desktop Navigation */}
                 <nav className="hidden md:flex items-center space-x-8">
-                    {['Inicio', 'Programas', 'Profesores', 'Torneos', 'Ranking', 'Contacto'].map((item) => (
+                    {navItems.map((item) => (
                         <a
-                            key={item}
-                            href={`#${item.toLowerCase()}`}
-                            className={`font-semibold transition-all text-sm uppercase tracking-wider relative group ${activeSection === item.toLowerCase() ? 'text-brand-neon' : 'text-gray-300 hover:text-white'}`}
+                            key={item.name}
+                            href={`#${item.id}`}
+                            className={`font-semibold transition-all text-sm uppercase tracking-wider relative group ${activeSection === item.id ? 'text-brand-neon' : 'text-gray-300 hover:text-white'}`}
                         >
-                            {item}
-                            <span className={`absolute -bottom-1 left-0 w-full h-0.5 bg-brand-neon transform transition-transform duration-300 ${activeSection === item.toLowerCase() ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100'}`}></span>
+                            {item.name}
+                            <span className={`absolute -bottom-1 left-0 w-full h-0.5 bg-brand-neon transform transition-transform duration-300 ${activeSection === item.id ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100'}`}></span>
                         </a>
                     ))}
                     <a
@@ -74,14 +83,14 @@ const Header = () => {
             {/* Mobile Menu Overlay */}
             {mobileMenuOpen && (
                 <div className="md:hidden absolute top-full left-0 w-full bg-brand-dark/95 backdrop-blur-xl border-t border-white/10 p-6 flex flex-col space-y-4 shadow-2xl">
-                    {['Inicio', 'Programas', 'Profesores', 'Torneos', 'Ranking', 'Contacto'].map((item) => (
+                    {navItems.map((item) => (
                         <a
-                            key={item}
-                            href={`#${item.toLowerCase()}`}
+                            key={item.name}
+                            href={`#${item.id}`}
                             className="text-white text-lg font-medium hover:text-brand-neon"
                             onClick={() => setMobileMenuOpen(false)}
                         >
-                            {item}
+                            {item.name}
                         </a>
                     ))}
                     <a

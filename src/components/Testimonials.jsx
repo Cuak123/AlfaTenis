@@ -1,12 +1,15 @@
 import React from 'react';
 import { Star, Quote } from 'lucide-react';
+import testimonial1 from '../assets/Testimonials/testimonial_1.png';
+import testimonial2 from '../assets/Testimonials/testimonial_2.png';
+import testimonial3 from '../assets/Testimonials/testimonial_3.png';
 
 const testimonials = [
     {
         id: 1,
         name: "María Fernanda P.",
         role: "Mamá de Alumno (Mini Tenis)",
-        image: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=2576&auto=format&fit=crop",
+        image: testimonial1,
         quote: "Increíble la paciencia y metodología de los profes. Mi hijo de 5 años siempre quiere ir a sus clases, ha mejorado mucho su coordinación.",
         rating: 5
     },
@@ -14,7 +17,7 @@ const testimonials = [
         id: 2,
         name: "Carlos Rodriguez",
         role: "Alumno Adulto",
-        image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=2574&auto=format&fit=crop",
+        image: testimonial2,
         quote: "Empecé de cero y el ambiente es genial. No solo aprendes técnica, sino que te diviertes y haces ejercicio. ¡Totalmente recomendado!",
         rating: 5
     },
@@ -22,7 +25,7 @@ const testimonials = [
         id: 3,
         name: "Andrea Vargas",
         role: "Competencia",
-        image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?q=80&w=2670&auto=format&fit=crop",
+        image: testimonial3,
         quote: "La preparación física y mental que dan para los torneos es otro nivel. Me han ayudado a ganar confianza en mi juego.",
         rating: 5
     }

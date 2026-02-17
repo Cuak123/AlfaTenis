@@ -3,18 +3,18 @@ import { Trophy, Medal, AlertCircle } from 'lucide-react';
 
 const rankings = {
     "5ta A": [
-        { rank: 1, name: "Diego Romero", points: 1200, wins: 15 },
-        { rank: 2, name: "Brayan", points: 1150, wins: 14 },
-        { rank: 3, name: "Diana", points: 1080, wins: 12 },
-        { rank: 4, name: "Nicolas", points: 950, wins: 10 },
-        { rank: 5, name: "Andre", points: 800, wins: 8 },
+        { rank: 1, name: "Jugador 1", points: 1200, wins: 15 },
+        { rank: 2, name: "Jugador 2", points: 1150, wins: 14 },
+        { rank: 3, name: "Jugador 3", points: 1080, wins: 12 },
+        { rank: 4, name: "Jugador 4", points: 950, wins: 10 },
+        { rank: 5, name: "Jugador 5", points: 800, wins: 8 },
     ],
     "5ta B": [
-        { rank: 1, name: "Marco Mendez", points: 5000, wins: 16 },
-        { rank: 2, name: "Macarena Schwartz", points: 5000, wins: 15 },
-        { rank: 3, name: "Gabriel Quiroz", points: 5000, wins: 13 },
-        { rank: 4, name: "Paula Huaman", points: 5000, wins: 9 },
-        { rank: 5, name: "Ivana Calderon", points: 4000, wins: 8 },
+        { rank: 1, name: "Jugador 1", points: 5000, wins: 16 },
+        { rank: 2, name: "Jugador 2", points: 5000, wins: 15 },
+        { rank: 3, name: "Jugador 3", points: 5000, wins: 13 },
+        { rank: 4, name: "Jugador 4", points: 5000, wins: 9 },
+        { rank: 5, name: "Jugador 5", points: 4000, wins: 8 },
     ]
 };
 
@@ -39,7 +39,7 @@ const Ranking = () => {
                         Tabla de Posiciones
                     </span>
                     <h2 className="text-3xl md:text-5xl font-extrabold text-white mb-6">
-                        Ranking <span className="text-brand-blue">Alfa Tenis</span>
+                        Ranking <span className="text-brand-blue">Tennis Academy</span>
                     </h2>
 
                     <div className="inline-flex items-center gap-2 bg-white/5 border border-white/10 px-4 py-2 rounded-full text-brand-neon text-sm font-medium animate-pulse">
@@ -107,7 +107,7 @@ const Ranking = () => {
 
                     <div className="p-4 bg-black/40 text-center">
                         <p className="text-gray-500 text-xs">
-                            * El ranking se basa en el desempeño oficial de los torneos Alfa Tenis.
+                            * El ranking se basa en el desempeño oficial de los torneos.
                         </p>
                     </div>
                 </div>

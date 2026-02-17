@@ -1,19 +1,19 @@
 import React, { useState } from 'react';
 import { Calendar, MapPin, Trophy, DollarSign, X, CheckCircle, Clock, Award } from 'lucide-react';
 
-import champ from '../assets/Tournaments/alfa tenis Open/image copy.png';
-import laver1 from '../assets/Tournaments/alfa tenis Open/image copy 4.png';
-import next_gen from '../assets/Tournaments/Next Gen Series/next_gen.png';
+import tournamentClay from '../assets/Tournaments/Generic Open/tournament_clay.png';
+import tournamentHard from '../assets/Tournaments/Generic Open/tournament_hard.png';
+import tournamentKids from '../assets/Tournaments/Generic Open/tournament_kids.png';
 
 const tournaments = [
     {
         id: 1,
-        name: "Torneo Relampago",
-        date: "15 Octubre 2025",
+        name: "Torneo Verano",
+        date: "15 Enero 2026",
         status: "Finalizado",
-        image: champ,
+        image: tournamentClay,
         categories: ["Singles Open"],
-        location: "Sede Principal - Alfa Tenis",
+        location: "Sede Principal",
         price: "S/. 80.00",
         schedule: "09:00 AM - 06:00 PM",
         points: {
@@ -25,12 +25,12 @@ const tournaments = [
     },
     {
         id: 2,
-        name: "Torneo Laver Cup",
-        date: "14 Diciembre 2025",
+        name: "Torneo Interclubes",
+        date: "14 Febrero 2026",
         status: "Finalizado",
-        image: laver1,
+        image: tournamentHard,
         categories: ["Equipos Blanco", "Equipos Negro"],
-        location: "El Polo",
+        location: "Club Central",
         price: "S/. 100.00 ",
         schedule: "Domingo: 10:30 - 14:00",
         points: {
@@ -45,7 +45,7 @@ const tournaments = [
         name: "Next Gen Series",
         date: "10-12 Mar 2024",
         status: "Próximamente",
-        image: next_gen,
+        image: tournamentKids,
         categories: ["Bola Roja", "Bola Naranja", "Bola Verde"],
         location: "Sede Menores",
         price: "S/. 60.00",
@@ -219,7 +219,7 @@ const Tournaments = () => {
                                     *Cupos limitados. Cierre de inscripciones 2 días antes del evento.
                                 </p>
                                 <a
-                                    href={`https://api.whatsapp.com/send/?phone=51997222869&text=Hola, estoy interesado en participar en el torneo ${selectedTournament.name}`}
+                                    href={`https://api.whatsapp.com/send/?phone=XXXXXXXXXXX&text=Hola, estoy interesado en participar en el torneo ${selectedTournament.name}`}
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     className="w-full md:w-auto bg-brand-blue hover:bg-brand-blue-dark text-white px-8 py-3 rounded-full font-bold transition-all shadow-lg hover:shadow-brand-blue/20 flex items-center justify-center gap-2"

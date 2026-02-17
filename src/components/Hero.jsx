@@ -1,5 +1,4 @@
-import React from 'react';
-import { ArrowRight } from 'lucide-react';
+import heroBg from '../assets/hero_bg.png';
 
 const Hero = () => {
     return (
@@ -7,7 +6,7 @@ const Hero = () => {
             {/* Background Image with Overlay */}
             <div className="absolute inset-0 z-0">
                 <img
-                    src="https://images.unsplash.com/photo-1595435934249-5df7ed86e1c0?q=80&w=2942&auto=format&fit=crop"
+                    src={heroBg}
                     alt="Tennis Court Action"
                     className="w-full h-full object-cover"
                 />
@@ -18,7 +17,7 @@ const Hero = () => {
             <div className="relative z-10 container mx-auto px-6 text-center md:text-left">
                 <div className="max-w-3xl">
                     <h2 className="text-brand-neon font-bold tracking-widest text-sm uppercase mb-4 animate-fadeIn">
-                        Alfa Tenis Academy
+                        Tennis Academy
                     </h2>
                     <h1 className="text-5xl md:text-7xl font-extrabold text-white leading-tight mb-6 drop-shadow-lg">
                         Domina la Cancha. <br />
@@ -33,7 +32,7 @@ const Hero = () => {
 
                     <div className="flex flex-col md:flex-row gap-4 justify-center md:justify-start">
                         <a
-                            href="https://wa.me/"
+                            href="#"
                             target="_blank"
                             rel="noopener noreferrer"
                             className="group bg-brand-neon hover:bg-brand-neon-hover text-brand-dark px-8 py-4 rounded-full font-bold text-lg transition-all transform hover:scale-105 flex items-center justify-center gap-2 shadow-[0_0_20px_rgba(204,255,0,0.4)]"

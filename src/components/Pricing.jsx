@@ -131,7 +131,7 @@ const Pricing = () => {
 
                         <div className="mt-8 pt-6 border-t border-white/10">
                             <a
-                                href="https://api.whatsapp.com/send/?phone=51997222869&text=Hola%2C+quiero+m%C3%A1s+informaci%C3%B3n+sobre+los+packs+de+clases+duales"
+                                href="https://api.whatsapp.com/send/?phone=000000000&text=Hola%2C+quiero+m%C3%A1s+informaci%C3%B3n+sobre+los+packs+de+clases+duales"
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 className="w-full block text-center bg-brand-neon/10 hover:bg-brand-neon hover:text-brand-dark text-brand-neon font-bold py-3 rounded-xl transition-all"

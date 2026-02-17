@@ -9,7 +9,7 @@ const Footer = () => {
                     {/* Brand */}
                     <div className="col-span-1 md:col-span-1">
                         <h3 className="text-2xl font-extrabold text-white mb-4">
-                            ALFA <span className="text-brand-blue">TENIS</span>
+                            TENNIS <span className="text-brand-blue">ACADEMY</span>
                         </h3>
                         <p className="text-gray-400 text-sm leading-relaxed">
                             Academia de alto rendimiento dedicada a formar la próxima generación de tenistas con pasión y disciplina.
@@ -32,15 +32,15 @@ const Footer = () => {
                         <div className="space-y-4 text-gray-400 text-sm">
                             <div className="flex items-start gap-3">
                                 <MapPin className="text-brand-blue mt-1 shrink-0" size={18} />
-                                <p>Jirón José Nicolás Rodrigo 100, Santiago de Surco 15023</p>
+                                <p>Tu Dirección, Ciudad, País</p>
                             </div>
                             <div className="flex items-center gap-3">
                                 <Mail className="text-brand-blue shrink-0" size={18} />
-                                <p>alfa.tenis.peru@gmail.com</p>
+                                <p>contacto@tuacademia.com</p>
                             </div>
                             <div className="flex items-center gap-3">
                                 <Phone className="text-brand-blue shrink-0" size={18} />
-                                <p>+51 997 222 869</p>
+                                <p>+00 000 000 000</p>
                             </div>
                         </div>
                     </div>
@@ -48,10 +48,10 @@ const Footer = () => {
 
                 <div className="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
                     <p className="text-gray-500 text-xs">
-                        © {new Date().getFullYear()} Alfa Tenis Academy. Todos los derechos reservados.
+                        © {new Date().getFullYear()} Tennis Academy. Todos los derechos reservados.
                     </p>
                     <div className="flex space-x-6">
-                        <a href="https://www.instagram.com/alfa.tenis.peru/" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-brand-blue transition-colors"><Instagram size={20} /></a>
+                        <a href="#" className="text-gray-400 hover:text-brand-blue transition-colors"><Instagram size={20} /></a>
                         <a href="#" className="text-gray-400 hover:text-brand-blue transition-colors"><Facebook size={20} /></a>
                         <a href="#" className="text-gray-400 hover:text-brand-blue transition-colors"><Twitter size={20} /></a>
                     </div>
