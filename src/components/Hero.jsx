@@ -1,3 +1,5 @@
+import React from 'react';
+import { ArrowRight } from 'lucide-react';
 import heroBg from '../assets/hero_bg.png';
 
 const Hero = () => {

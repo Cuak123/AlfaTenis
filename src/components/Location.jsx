@@ -4,19 +4,19 @@ import { MapPin, Navigation, Info } from 'lucide-react';
 const LOCATIONS = [
     {
         id: 'principal',
-        name: 'Sede Principal - Fundo Odría',
-        address: 'Jirón José Nicolás Rodrigo 100, Santiago de Surco 15023',
-        description: 'Entrena en las mejores canchas de polvo de ladrillo de Monterrico.',
-        mapUrl: 'https://www.google.com/maps/place/JQ+Restaurant+%26+Lounge/@-12.1009568,-76.9648791,19.88z/data=!4m15!1m8!3m7!1s0x9105c70ae3aa63c1:0x325c606a7bc37c71!2sJr+Jos%C3%A9+Nicol%C3%A1s+Rodrigo+100,+Santiago+de+Surco+15023!3b1!8m2!3d-12.1028782!4d-76.9617856!16s%2Fg%2F11b8t92gjc!3m5!1s0x9105c7a09bd43d0f:0xa587af98aa5fbe29!8m2!3d-12.1009761!4d-76.9648268!16s%2Fg%2F11b807104q?entry=ttu&g_ep=EgoyMDI1MTIwOS4wIKXMDSoKLDEwMDc5MjA3M0gBUAM%3D',
-        embedUrl: 'https://maps.google.com/maps?q=-12.1009568,-76.9648791&z=17&output=embed'
+        name: 'Sede Principal',
+        address: 'Av. del Deporte 123, Ciudad',
+        description: 'Nuestras instalaciones principales cuentan con canchas de primer nivel.',
+        mapUrl: 'https://www.google.com/maps/search/Tennis+Court',
+        embedUrl: 'https://maps.google.com/maps?q=Tennis+Court&z=15&output=embed'
     },
     {
         id: 'alterna',
-        name: 'Sede Alterna - El Polo',
-        address: 'Av. Lima Polo 380, Santiago de Surco 15023',
-        description: 'Sede disponible para torneos y eventos especiales.',
-        mapUrl: 'https://maps.google.com/?q=Av.+Lima+Polo+380,+Santiago+de+Surco+15023',
-        embedUrl: 'https://maps.google.com/maps?q=Av.+Lima+Polo+380,+Santiago+de+Surco+15023&z=16&output=embed'
+        name: 'Sede Alterna',
+        address: 'Calle Los Cedros 456, Distrito',
+        description: 'Sede anexa disponible para entrenamientos y torneos selectos.',
+        mapUrl: 'https://www.google.com/maps/search/Tennis+Club',
+        embedUrl: 'https://maps.google.com/maps?q=Tennis+Club&z=15&output=embed'
     }
 ];
 

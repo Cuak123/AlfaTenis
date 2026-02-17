@@ -1,3 +1,4 @@
+import React, { useState } from 'react';
 import coachHead from '../assets/Staff/coach_head.png';
 import coachAssistant from '../assets/Staff/coach_assistant.png';
 import staffAdmin from '../assets/Staff/staff_admin.png';
