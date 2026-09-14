@@ -1,28 +1,13 @@
 import React from 'react';
-import { MapPin, Navigation, Info } from 'lucide-react';
+import { MapPin, Navigation, Clock } from 'lucide-react';
+import { contact } from '../config/site';
 
-const LOCATIONS = [
-    {
-        id: 'principal',
-        name: 'Sede Principal',
-        address: 'Av. del Deporte 123, Ciudad',
-        description: 'Nuestras instalaciones principales cuentan con canchas de primer nivel.',
-        mapUrl: 'https://www.google.com/maps/search/Tennis+Court',
-        embedUrl: 'https://maps.google.com/maps?q=Tennis+Court&z=15&output=embed'
-    },
-    {
-        id: 'alterna',
-        name: 'Sede Alterna',
-        address: 'Calle Los Cedros 456, Distrito',
-        description: 'Sede anexa disponible para entrenamientos y torneos selectos.',
-        mapUrl: 'https://www.google.com/maps/search/Tennis+Club',
-        embedUrl: 'https://maps.google.com/maps?q=Tennis+Club&z=15&output=embed'
-    }
-];
+// Real venue. Update the query if the academy moves.
+const MAP_QUERY = 'Complejo Deportivo FAP Monterrico, Lima';
+const MAP_URL = `https://www.google.com/maps/search/${encodeURIComponent(MAP_QUERY)}`;
+const EMBED_URL = `https://maps.google.com/maps?q=${encodeURIComponent(MAP_QUERY)}&z=15&output=embed`;
 
 const Location = () => {
-    const [activeLocation, setActiveLocation] = React.useState(LOCATIONS[0]);
-
     return (
         <section id="ubicacion" className="py-20 bg-slate-900 relative">
             <div className="container mx-auto px-6">
@@ -37,46 +22,34 @@ const Location = () => {
                             Nuestra <span className="text-brand-blue">Sede</span>
                         </h2>
                         <p className="text-gray-400 text-lg mb-8 leading-relaxed">
-                            {activeLocation.description} Contamos con iluminación LED para turnos nocturnos y estacionamiento seguro.
+                            Entrenamos en canchas de primer nivel, con iluminación para turnos
+                            nocturnos y estacionamiento seguro para las familias.
                         </p>
 
-                        <div className="space-y-6 mb-8">
-                            {/* Interactive Selector for Principal */}
-                            <div
-                                onClick={() => setActiveLocation(LOCATIONS[0])}
-                                className={`flex items-start gap-4 p-4 rounded-xl transition-all cursor-pointer border ${activeLocation.id === 'principal' ? 'bg-white/5 border-brand-blue/50' : 'border-transparent hover:bg-white/5'}`}
-                            >
-                                <div className={`p-3 rounded-full ${activeLocation.id === 'principal' ? 'bg-brand-blue text-white' : 'bg-brand-blue/20 text-brand-blue'}`}>
+                        <div className="space-y-4 mb-8">
+                            <div className="flex items-start gap-4 p-4 rounded-xl bg-white/5 border border-brand-blue/30">
+                                <div className="p-3 rounded-full bg-brand-blue text-white shrink-0">
                                     <MapPin size={24} />
                                 </div>
                                 <div>
-                                    <h3 className={`font-bold text-xl mb-1 ${activeLocation.id === 'principal' ? 'text-brand-blue' : 'text-white'}`}>
-                                        {LOCATIONS[0].name}
-                                    </h3>
-                                    <p className="text-gray-400">{LOCATIONS[0].address}</p>
+                                    <h3 className="font-bold text-xl mb-1 text-white">Complejo Deportivo FAP Monterrico</h3>
+                                    <p className="text-gray-400">{contact.address}</p>
                                 </div>
                             </div>
 
-                            {/* Interactive Selector for Alterna */}
-                            <div
-                                onClick={() => setActiveLocation(LOCATIONS[1])}
-                                className={`flex items-start gap-4 p-4 rounded-xl transition-all cursor-pointer border ${activeLocation.id === 'alterna' ? 'bg-white/5 border-brand-neon/50' : 'border-transparent hover:bg-white/5'}`}
-                            >
-                                <div className={`p-3 rounded-full ${activeLocation.id === 'alterna' ? 'bg-brand-neon text-brand-dark' : 'bg-brand-neon/20 text-brand-neon'}`}>
-                                    <Info size={24} />
+                            <div className="flex items-start gap-4 p-4 rounded-xl border border-transparent">
+                                <div className="p-3 rounded-full bg-brand-neon/20 text-brand-neon shrink-0">
+                                    <Clock size={24} />
                                 </div>
                                 <div>
-                                    <h3 className={`font-bold text-xl mb-1 ${activeLocation.id === 'alterna' ? 'text-brand-neon' : 'text-white'}`}>
-                                        {LOCATIONS[1].name}
-                                    </h3>
-                                    <p className="text-gray-400">{LOCATIONS[1].address}</p>
-                                    <p className="text-gray-500 text-xs mt-1">*Sujeto a disponibilidad según torneo.</p>
+                                    <h3 className="font-bold text-xl mb-1 text-white">Horarios</h3>
+                                    <p className="text-gray-400">{contact.hours}</p>
                                 </div>
                             </div>
                         </div>
 
                         <a
-                            href={activeLocation.mapUrl}
+                            href={MAP_URL}
                             target="_blank"
                             rel="noopener noreferrer"
                             className="inline-flex items-center gap-2 bg-white text-brand-dark px-8 py-3 rounded-full font-bold hover:bg-gray-200 transition-colors"
@@ -88,14 +61,13 @@ const Location = () => {
 
                     {/* Map */}
                     <div className="relative h-[400px] rounded-3xl overflow-hidden border border-white/10 shadow-2xl group">
-                        {/* Overlay prompt to interact */}
                         <div className="absolute inset-0 bg-black/50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none z-10">
                             <span className="text-white font-bold bg-black/50 px-4 py-2 rounded-full backdrop-blur">Ver Mapa Interactivo</span>
                         </div>
 
                         <iframe
-                            key={activeLocation.id}
-                            src={activeLocation.embedUrl}
+                            title="Ubicación Alfa Tenis"
+                            src={EMBED_URL}
                             width="100%"
                             height="100%"
                             style={{ border: 0 }}

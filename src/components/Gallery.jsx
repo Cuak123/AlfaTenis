@@ -1,5 +1,6 @@
 import React from 'react';
 import { Camera, Instagram } from 'lucide-react';
+import { brand, social } from '../config/site';
 
 import galleryTraining from '../assets/Gallery/gallery_training.png';
 import galleryMatch from '../assets/Gallery/gallery_match.png';
@@ -48,19 +49,21 @@ const Gallery = () => {
                             Galería
                         </span>
                         <h2 className="text-3xl md:text-5xl font-extrabold text-white">
-                            Momentos <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-blue to-white">Tennis Academy</span>
+                            Momentos <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-blue to-white">{brand.name}</span>
                         </h2>
                     </div>
 
-                    <a
-                        href="#"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="text-gray-400 hover:text-brand-neon transition-colors flex items-center gap-2 font-medium"
-                    >
-                        <Instagram size={20} />
-                        Síguenos en Instagram
-                    </a>
+                    {social.instagram && (
+                        <a
+                            href={social.instagram}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="text-gray-400 hover:text-brand-neon transition-colors flex items-center gap-2 font-medium"
+                        >
+                            <Instagram size={20} />
+                            Síguenos en Instagram
+                        </a>
+                    )}
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-4 grid-rows-2 gap-4 h-[600px]">

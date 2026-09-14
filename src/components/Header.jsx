@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
+import { brand, nav as navItems, waLink } from '../config/site';
 
 const Header = () => {
     const [isScrolled, setIsScrolled] = useState(false);
@@ -11,9 +12,8 @@ const Header = () => {
         const handleScroll = () => {
             setIsScrolled(window.scrollY > 20);
 
-            // Active Section Logic
-            // 'competicion' replaces 'torneos' and 'ranking'
-            const sections = ['inicio', 'programas', 'profesores', 'competicion', 'contacto'];
+            // Active Section Logic — sections come from the nav config
+            const sections = navItems.map((item) => item.id);
             const scrollPosition = window.scrollY + 100; // Offset for header height
 
             for (const section of sections) {
@@ -27,14 +27,6 @@ const Header = () => {
         return () => window.removeEventListener('scroll', handleScroll);
     }, []);
 
-    const navItems = [
-        { name: 'Inicio', id: 'inicio' },
-        { name: 'Programas', id: 'programas' },
-        { name: 'Profesores', id: 'profesores' },
-        { name: 'Competición', id: 'competicion' },
-        { name: 'Contacto', id: 'contacto' }
-    ];
-
     return (
         <header
             className={`fixed w-full z-50 transition-all duration-300 ${isScrolled
@@ -46,8 +38,8 @@ const Header = () => {
                 {/* Logo */}
                 <div className="flex items-center space-x-2">
                     {/* Placeholder for real logo, using text for now */}
-                    <span className="text-2xl font-extrabold tracking-tighter text-white">
-                        TENNIS <span className="text-brand-blue">ACADEMY</span>
+                    <span className="text-2xl font-extrabold tracking-tighter text-white uppercase">
+                        {brand.nameParts[0]} <span className="text-brand-blue">{brand.nameParts[1]}</span>
                     </span>
                 </div>
 
@@ -64,7 +56,9 @@ const Header = () => {
                         </a>
                     ))}
                     <a
-                        href="#join"
+                        href={waLink('Hola, quiero inscribirme en la academia.')}
+                        target="_blank"
+                        rel="noopener noreferrer"
                         className="bg-brand-blue hover:bg-brand-blue-dark text-white px-5 py-2 rounded-full font-bold transition-all transform hover:scale-105 shadow-lg shadow-brand-blue/30"
                     >
                         Inscríbete
@@ -94,7 +88,9 @@ const Header = () => {
                         </a>
                     ))}
                     <a
-                        href="#join"
+                        href={waLink('Hola, quiero inscribirme en la academia.')}
+                        target="_blank"
+                        rel="noopener noreferrer"
                         className="bg-brand-blue text-center text-white py-3 rounded-lg font-bold"
                         onClick={() => setMobileMenuOpen(false)}
                     >

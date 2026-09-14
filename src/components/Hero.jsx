@@ -1,6 +1,7 @@
 import React from 'react';
 import { ArrowRight } from 'lucide-react';
 import heroBg from '../assets/hero_bg.png';
+import { brand, waLink } from '../config/site';
 
 const Hero = () => {
     return (
@@ -19,7 +20,7 @@ const Hero = () => {
             <div className="relative z-10 container mx-auto px-6 text-center md:text-left">
                 <div className="max-w-3xl">
                     <h2 className="text-brand-neon font-bold tracking-widest text-sm uppercase mb-4 animate-fadeIn">
-                        Tennis Academy
+                        {brand.name}
                     </h2>
                     <h1 className="text-5xl md:text-7xl font-extrabold text-white leading-tight mb-6 drop-shadow-lg">
                         Domina la Cancha. <br />
@@ -28,25 +29,26 @@ const Hero = () => {
                         </span>
                     </h1>
                     <p className="text-gray-300 text-lg md:text-xl mb-8 max-w-2xl leading-relaxed">
-                        Formación integral de alto rendimiento para todas las edades.
-                        Entrena con profesionales y lleva tu juego al siguiente nivel.
+                        Formación de tenis para niños y jóvenes en un ambiente seguro y
+                        divertido. Entrena con profesores calificados en el Complejo
+                        Deportivo FAP Monterrico.
                     </p>
 
                     <div className="flex flex-col md:flex-row gap-4 justify-center md:justify-start">
                         <a
-                            href="#"
+                            href={waLink('Hola, quiero solicitar una clase de prueba gratis en Alfa Tenis.')}
                             target="_blank"
                             rel="noopener noreferrer"
                             className="group bg-brand-neon hover:bg-brand-neon-hover text-brand-dark px-8 py-4 rounded-full font-bold text-lg transition-all transform hover:scale-105 flex items-center justify-center gap-2 shadow-[0_0_20px_rgba(204,255,0,0.4)]"
                         >
-                            Inscríbete Ahora
+                            Clase de prueba gratis
                             <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
                         </a>
                         <a
-                            href="#profesores"
+                            href="#programas"
                             className="bg-white/10 hover:bg-white/20 backdrop-blur-sm text-white px-8 py-4 rounded-full font-bold text-lg transition-all border border-white/20"
                         >
-                            Conoce el Staff
+                            Conoce los Programas
                         </a>
                     </div>
                 </div>

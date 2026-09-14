@@ -1,5 +1,6 @@
 import React from 'react';
 import { Users, Zap, Baby, CheckCircle, ArrowRight } from 'lucide-react';
+import { waLink } from '../config/site';
 
 const programs = [
     {
@@ -72,7 +73,7 @@ const Programs = () => {
                             </ul>
 
                             <a
-                                href={`https://api.whatsapp.com/send/?phone=000000000&text=${encodeURIComponent(program.message)}`}
+                                href={waLink(program.message)}
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 className="w-full py-4 rounded-xl font-bold text-center flex items-center justify-center gap-2 transition-all bg-white hover:bg-gray-100 text-brand-dark group transform hover:scale-[1.02]"

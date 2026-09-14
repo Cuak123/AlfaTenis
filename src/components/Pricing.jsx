@@ -1,5 +1,6 @@
 import React from 'react';
 import { Check, Star, Zap, Ticket } from 'lucide-react';
+import { waLink } from '../config/site';
 
 const Pricing = () => {
     return (
@@ -71,10 +72,18 @@ const Pricing = () => {
                         </div>
 
                         <div className="mt-8 pt-6 border-t border-white/10">
-                            <ul className="space-y-2 text-sm text-gray-400">
+                            <ul className="space-y-2 text-sm text-gray-400 mb-6">
                                 <li className="flex items-center gap-2"><Check size={14} className="text-brand-blue" /> Vacantes limitadas</li>
                                 <li className="flex items-center gap-2"><Check size={14} className="text-brand-blue" /> Grupos por nivel</li>
                             </ul>
+                            <a
+                                href={waLink('Hola, quiero probar una clase gratis en la Escuela de Tenis.')}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="w-full block text-center bg-brand-blue/10 hover:bg-brand-blue hover:text-white text-brand-blue font-bold py-3 rounded-xl transition-all"
+                            >
+                                ¡Ven, prueba una clase gratis!
+                            </a>
                         </div>
                     </div>
 
@@ -131,12 +140,12 @@ const Pricing = () => {
 
                         <div className="mt-8 pt-6 border-t border-white/10">
                             <a
-                                href="https://api.whatsapp.com/send/?phone=000000000&text=Hola%2C+quiero+m%C3%A1s+informaci%C3%B3n+sobre+los+packs+de+clases+duales"
+                                href={waLink('Hola, quiero probar una clase gratis y conocer los packs de clases duales.')}
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 className="w-full block text-center bg-brand-neon/10 hover:bg-brand-neon hover:text-brand-dark text-brand-neon font-bold py-3 rounded-xl transition-all"
                             >
-                                Consultar Disponibilidad
+                                ¡Ven, prueba una clase gratis!
                             </a>
                         </div>
                     </div>
