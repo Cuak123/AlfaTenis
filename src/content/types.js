@@ -87,13 +87,25 @@
  */
 
 /**
+ * @typedef {Object} TournamentPrize
+ * @property {string} place
+ * @property {string|null} award
+ *
  * @typedef {Object} Tournament
  * @property {string} id
  * @property {string} name
- * @property {string|null} date
- * @property {string|null} venue
- * @property {string|null} result
- * @property {string|null} photo
+ * @property {string} date                  ISO date.
+ * @property {string} dateLabel             Display string, es-PE.
+ * @property {string|null} time
+ * @property {string} categories            Displayed categories.
+ * @property {string[]} rawCategories       Verbatim flyer strings, for audit.
+ * @property {boolean} [categoriesNeedReview]
+ * @property {string} venueName
+ * @property {string|null} venueAddress
+ * @property {string|null} surface
+ * @property {string[]} format
+ * @property {TournamentPrize[]} prizes
+ * @property {boolean} isPast               Gates the past/upcoming wording.
  * @property {boolean} confirmed
  */
 

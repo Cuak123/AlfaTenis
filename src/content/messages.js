@@ -29,6 +29,10 @@ export const messages = {
 
   /** Location / schedule. */
   schedule: 'Hola, quiero consultar los horarios disponibles.',
+
+  /** Competición. Asks about the NEXT edition — the last one is over. */
+  nextTournament:
+    'Hola, quiero que me avisen cuando salga la convocatoria del próximo torneo de Alfa Tenis.',
 };
 
 /** @typedef {keyof typeof messages} MessageKey */
