@@ -54,8 +54,12 @@
   <!-- Structured Data (JSON-LD).
        No priceRange: the client has not confirmed any price, and the old value
        was an unsupported claim. No sameAs: no social profile URLs yet.
-       Weekend classes are advertised but have no stated times, so only the
-       confirmed weekday hours are encoded. -->
+
+       No openingHoursSpecification: the client's sheet gives "06:00 am - 11 pm"
+       for all three venues but names no days of the week, and the previous
+       Mon-Fri 16:00-19:00 entry was a class timetable that the sheet does not
+       support. Encoding either would be asserting days nobody stated.
+       TODO (cliente): confirmar días y horario de clases, luego reponer. -->
   <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -68,19 +72,11 @@
       "email": "alfa.tenis.peru@gmail.com",
       "address": {
         "@type": "PostalAddress",
-        "streetAddress": "Complejo Deportivo FAP Monterrico, Fundo Odría",
+        "streetAddress": "Jr. José Nicolás Rodrigo 100",
         "addressLocality": "Lima",
         "addressRegion": "Lima",
         "addressCountry": "PE"
-      },
-      "openingHoursSpecification": [
-        {
-          "@type": "OpeningHoursSpecification",
-          "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
-          "opens": "16:00",
-          "closes": "19:00"
-        }
-      ]
+      }
     }
   </script>
 </head>

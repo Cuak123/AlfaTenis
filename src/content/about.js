@@ -4,9 +4,9 @@
  * "Nosotros" section.
  *
  * The three highlights carry over from the previous build; CLAUDE.md does not
- * flag them as placeholder. The venue line was reworded from "el Complejo
- * Deportivo FAP Monterrico" to just "Monterrico" — same fact, and it keeps the
- * FAP name off the page while that question is open. See src/content/venues.js.
+ * flag them as placeholder. The venue line no longer names a single district:
+ * the client's sheet lists three venues, so "Canchas en Monterrico" was only
+ * true of one of them. See src/content/venues.js.
  *
  * `icon` is a key, not a component, so this file stays free of JSX.
  */
@@ -30,7 +30,7 @@ export const about = {
       id: 'instalaciones',
       icon: 'building',
       title: 'Instalaciones de primer nivel',
-      text: 'Canchas en Monterrico para entrenar con comodidad, con iluminación para los turnos de la tarde.',
+      text: 'Tres sedes en Lima para entrenar con comodidad, con iluminación para los turnos de la noche.',
     },
   ],
 };

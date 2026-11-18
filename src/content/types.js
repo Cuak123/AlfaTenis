@@ -49,11 +49,16 @@
 /**
  * @typedef {Object} Coach
  * @property {string} id
- * @property {string} name
+ * @property {string} name                  Title-cased from the client's sheet.
  * @property {string|null} role
- * @property {string|null} bio
- * @property {string[]} credentials     Empty until the client supplies them.
- * @property {string|null} photo        Path under /images, or null.
+ * @property {number|null} yearsExperience
+ * @property {string[]} levels              Levels this coach teaches.
+ * @property {string[]} credentials         Empty means none on file, not unknown.
+ * @property {string} [rawCertifications]   Verbatim sheet value, kept for audit.
+ * @property {string[]} clubs               Where they have coached.
+ * @property {string|null} playerBackground Their own playing record.
+ * @property {string|null} photo            Path under /images, or null.
+ * @property {boolean} [displayNameNeedsReview] True while accents are unconfirmed.
  * @property {boolean} confirmed
  */
 
@@ -61,11 +66,13 @@
  * @typedef {Object} Venue
  * @property {string} id
  * @property {string} name
- * @property {string} address
+ * @property {string} address          Street address as the client wrote it.
+ * @property {string|null} district    Null when the client gave none.
  * @property {string} city
- * @property {string} shortLocation
- * @property {string|null} hours
- * @property {string} mapQuery          Fed to Google Maps; keep it searchable.
+ * @property {string} shortLocation    District-level label for tight spaces.
+ * @property {string|null} hours       Opening hours, NOT a class timetable.
+ * @property {string} mapQuery
+ * @property {boolean} isPrimary
  * @property {boolean} confirmed
  */
 

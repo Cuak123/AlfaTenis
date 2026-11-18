@@ -1,6 +1,6 @@
 import { Clock, Facebook, Instagram, Mail, MapPin, Phone } from 'lucide-react';
 import { brand, contact, nav, social, whatsapp } from '../content/site.js';
-import { primaryVenue } from '../content/venues.js';
+import { openingHours, venues } from '../content/venues.js';
 import { waLinkProps } from '../lib/whatsapp.js';
 
 /**
@@ -93,15 +93,18 @@ export default function Footer() {
               <li className="flex items-start gap-3">
                 <MapPin aria-hidden="true" className="mt-0.5 h-4 w-4 shrink-0 text-brand-neon" />
                 <span>
-                  {primaryVenue.name}
-                  <br />
-                  {primaryVenue.address} · {primaryVenue.city}
+                  {venues.map((venue) => (
+                    <span key={venue.id} className="mt-1 block first:mt-0">
+                      {venue.name}
+                      {venue.district ? ` · ${venue.district}` : ''}
+                    </span>
+                  ))}
                 </span>
               </li>
-              {primaryVenue.hours ? (
+              {openingHours ? (
                 <li className="flex items-start gap-3">
                   <Clock aria-hidden="true" className="mt-0.5 h-4 w-4 shrink-0 text-brand-neon" />
-                  <span>{primaryVenue.hours}</span>
+                  <span>{openingHours}</span>
                 </li>
               ) : null}
             </ul>

@@ -22,10 +22,17 @@ export const contact = {
   email: 'alfa.tenis.peru@gmail.com',
   /** Human-readable. The dialable digits live in `whatsapp.phone`. */
   phone: '+51 997 222 869',
-  address: 'Complejo Deportivo FAP Monterrico, Fundo Odría, Lima, Perú',
   city: 'Lima, Perú',
-  hours: 'Lunes a viernes de 4:00 a 7:00 p. m. · Clases los fines de semana',
 };
+
+/*
+ * `address` and `hours` used to live here and were removed on 2026-11-18.
+ * Both were single-venue facts: one address, and a "Lunes a viernes de 4:00 a
+ * 7:00 p. m." class timetable. The client's own sheet lists THREE venues, so
+ * addresses and opening hours now live in src/content/venues.js, one per venue,
+ * and nothing reads them from here. Do not re-add them — two sources for the
+ * same fact is how the site ended up advertising the wrong hours.
+ */
 
 export const whatsapp = {
   /** Country code + number, digits only. Every CTA on the site funnels here. */
@@ -50,6 +57,7 @@ export const nav = [
   { label: 'Inicio', id: 'inicio', ready: true },
   { label: 'Nosotros', id: 'nosotros', ready: true },
   { label: 'Programas', id: 'programas', ready: true },
+  { label: 'Profesores', id: 'profesores', ready: true },
   { label: 'Precios', id: 'precios', ready: false },
   { label: 'Ubicación', id: 'ubicacion', ready: true },
   { label: 'Contacto', id: 'contacto', ready: true },

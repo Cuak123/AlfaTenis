@@ -1,6 +1,6 @@
 import { ArrowRight, Clock, MapPin } from 'lucide-react';
 import { hero } from '../content/hero.js';
-import { primaryVenue } from '../content/venues.js';
+import { openingHours, venuesSummary } from '../content/venues.js';
 import { waLinkProps } from '../lib/whatsapp.js';
 
 /**
@@ -28,14 +28,17 @@ export default function Hero() {
         className="absolute inset-0 -z-20 h-full w-full scale-105 object-cover object-[38%_28%] sm:scale-100 sm:object-center"
       />
 
-      {/* Keeps the player readable up top while the copy sits on near-solid
-          brand-dark. Bottom-up on mobile, left-to-right from `sm`. */}
+      {/* Keeps the player readable while the copy sits on near-solid
+          brand-dark. Bottom-up on mobile; from `sm` it runs right-to-left so the
+          solid end lands under the right-aligned copy. This direction is tied to
+          `sm:items-end` on the container below — flip one and you must flip both,
+          or the copy ends up on the bright half of the photo. */}
       <div
         aria-hidden="true"
-        className="absolute inset-0 -z-10 bg-gradient-to-t from-brand-dark from-32% via-brand-dark/75 via-62% to-brand-dark/25 sm:bg-gradient-to-r sm:from-brand-dark sm:from-8% sm:via-brand-dark/80 sm:via-52% sm:to-brand-dark/15"
+        className="absolute inset-0 -z-10 bg-gradient-to-t from-brand-dark from-32% via-brand-dark/75 via-62% to-brand-dark/25 sm:bg-gradient-to-l sm:from-brand-dark sm:from-8% sm:via-brand-dark/80 sm:via-52% sm:to-brand-dark/15"
       />
 
-      <div className="mx-auto flex w-full max-w-content flex-1 flex-col justify-end px-5 pb-28 pt-28 sm:justify-center sm:px-8 sm:py-28">
+      <div className="mx-auto flex w-full max-w-content flex-1 flex-col justify-end px-5 pb-28 pt-28 sm:items-end sm:justify-center sm:px-8 sm:py-28">
         <div className="max-w-xl lg:max-w-2xl">
           <p className="mb-4 text-[0.7rem] font-semibold uppercase tracking-[0.18em] text-brand-neon sm:text-sm">
             {hero.eyebrow}
@@ -69,14 +72,14 @@ export default function Hero() {
               <Clock aria-hidden="true" className="mt-0.5 h-4 w-4 shrink-0 text-brand-neon" />
               <div>
                 <dt className="sr-only">Horarios</dt>
-                <dd>{primaryVenue.hours}</dd>
+                <dd>{openingHours}</dd>
               </div>
             </div>
             <div className="flex items-start gap-2.5">
               <MapPin aria-hidden="true" className="mt-0.5 h-4 w-4 shrink-0 text-brand-neon" />
               <div>
                 <dt className="sr-only">Ubicación</dt>
-                <dd>{primaryVenue.shortLocation}</dd>
+                <dd>{venuesSummary}</dd>
               </div>
             </div>
           </dl>
