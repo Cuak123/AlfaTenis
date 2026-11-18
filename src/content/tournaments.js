@@ -14,8 +14,10 @@
  *     Club de Tenis Lima. The flyer art is AI-generated.
  *
  * ⚠️ Most competition photos show identifiable minors, and one
- * (public/assets/torneoconcarlos.jpeg) shows a child's full name on a
- * certificate. None may be published without written parental consent.
+ * (src/assets/Tournaments/torneoconcarlos.jpeg) shows a child's full name
+ * on a certificate. None may be published without written parental
+ * consent. Both tournament photos were moved out of `public/` so they are
+ * no longer served at a public URL — see archive/README.md.
  *
  * @type {import('./types.js').Tournament[]}
  */

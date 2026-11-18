@@ -1,3 +1,11 @@
+"""One-off script that baked a tournament photo into the flyer as a base64 URI.
+
+STALE — do not run. It already ran: archive/flyer_2026.html carries the data URI.
+Its paths are wrong twice over: `base_dir` is missing `Web Develop/`, and both
+files have since moved out of `public/` on purpose (the photo shows identifiable
+minors). Pointing it back at `public/` would republish them. See archive/README.md.
+"""
+
 import base64
 import os
 
