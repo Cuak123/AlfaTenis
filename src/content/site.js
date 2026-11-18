@@ -59,6 +59,7 @@ export const nav = [
   { label: 'Programas', id: 'programas', ready: true },
   { label: 'Profesores', id: 'profesores', ready: true },
   { label: 'Competición', id: 'competicion', ready: true },
+  { label: 'Galería', id: 'galeria', ready: true },
   { label: 'Precios', id: 'precios', ready: false },
   { label: 'Ubicación', id: 'ubicacion', ready: true },
   { label: 'Contacto', id: 'contacto', ready: true },

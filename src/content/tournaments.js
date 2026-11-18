@@ -24,9 +24,12 @@
  * TODO (cliente): confirmar si el torneo tuvo 5A y 5B o solo 5B mixto.
  *
  * ── Deliberately excluded ───────────────────────────────────────────────────
- * - The Wilson logo on the teaser. Marco's brief rules it out, so sponsors are
- *   credited generically as the flyer itself also does ("nuestros
- *   patrocinadores").
+ * - The Wilson logo on the teaser. The brief rules out USING it as a brand
+ *   mark, so sponsors are credited generically here, as the flyer's own prize
+ *   box also does ("nuestros patrocinadores"). Marco clarified on 2026-11-18
+ *   that the logo appearing in the BACKGROUND of a court photo is a different
+ *   thing and is fine — see src/content/gallery.js. That does not change this
+ *   section: no Wilson mark is lifted out and placed in the copy.
  * - Every tournament photograph. They show identifiable minors with no
  *   parental consent on file. See src/assets/Tournaments/ and archive/README.md.
  * - Results, winners and participant counts. No flyer records them and no
