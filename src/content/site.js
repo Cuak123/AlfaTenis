@@ -55,12 +55,11 @@ export const nav = [
   { label: 'Contacto', id: 'contacto', ready: true },
 ];
 
-/**
- * TODO (antes del lanzamiento): dominio real, og-image 1200x630 y favicon.
- * Leave `domain` empty rather than guessing — a wrong canonical is worse than none.
- */
+/** SEO basics. The og-image is generated from a real client photo. */
 export const seo = {
-  domain: '',
+  /** Live host. Mirrored in index.html, robots.txt and sitemap.xml —
+      all four change together if a custom domain lands. */
+  domain: 'https://alfa-tenis.vercel.app',
   ogImage: '/images/og-image.jpg',
   titleDefault: 'Alfa Tenis | Academia de tenis para niños y jóvenes en Lima',
   descriptionDefault:

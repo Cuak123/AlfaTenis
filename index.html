@@ -1,88 +1,88 @@
 <!doctype html>
-<html lang="es">
+<html lang="es-PE">
 
 <head>
   <!--
-    TODO (before launch) — replace placeholder SEO values below with real ones:
-      • Domain: swap every "https://REPLACE-WITH-YOUR-DOMAIN" (og/twitter/JSON-LD url + image)
-      • og-image.jpg: add a real 1200x630 share image at the site root
-      • Favicon: replace /vite.svg with the real logo
-      • JSON-LD: real name, address, telephone, and social sameAs links
-      • Title / description / phone / address strings
+    Canonical host: https://alfa-tenis.vercel.app (the live Vercel deployment).
+    If the client moves to a custom domain, it has to change in THREE places:
+      1. every absolute URL in this file (canonical, og:*, twitter:*, JSON-LD)
+      2. `seo.domain` in src/content/site.js
+      3. public/robots.txt and public/sitemap.xml
+    Keep one host only — no www/apex mix — or the canonicals split.
+
+    Still TODO with the client:
+      • Real logo. The favicon is a brand-coloured placeholder, not their mark.
+      • Real geo coordinates. The old geo/ICBM tags pointed at central Lima,
+        roughly 5 km from Monterrico, so they were removed rather than left wrong.
   -->
   <meta charset="UTF-8" />
-  <link rel="icon" type="image/svg+xml" href="/vite.svg" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#0f172a" />
+
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+  <link rel="canonical" href="https://alfa-tenis.vercel.app/" />
 
   <!-- Primary Meta Tags -->
   <title>Alfa Tenis | Academia de Tenis para Niños y Jóvenes en Lima</title>
-  <meta name="title" content="Alfa Tenis | Academia de Tenis para Niños y Jóvenes en Lima" />
   <meta name="description"
-    content="Academia de tenis para niños y jóvenes en Lima. Ambiente seguro y divertido, entrenadores calificados en el Complejo Deportivo FAP Monterrico. Solicita tu clase de prueba gratis." />
-  <meta name="keywords"
-    content="alfa tenis, clases de tenis lima, academia de tenis, tenis para niños, mini tenis, tenis monterrico, tenis fap" />
+    content="Academia de tenis para niños y jóvenes en Lima, con entrenadores calificados y enfoque en alto rendimiento. Agenda tu clase de prueba por WhatsApp." />
   <meta name="robots" content="index, follow" />
-  <meta name="language" content="Spanish" />
   <meta name="author" content="Alfa Tenis" />
 
   <!-- Open Graph / Facebook / WhatsApp -->
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://REPLACE-WITH-YOUR-DOMAIN/" />
+  <meta property="og:site_name" content="Alfa Tenis" />
+  <meta property="og:locale" content="es_PE" />
+  <meta property="og:url" content="https://alfa-tenis.vercel.app/" />
   <meta property="og:title" content="Alfa Tenis | Academia de Tenis en Lima" />
   <meta property="og:description"
-    content="Clases de tenis para niños y jóvenes en un ambiente seguro y divertido. Solicita tu clase de prueba gratis." />
-  <meta property="og:image"
-    content="https://REPLACE-WITH-YOUR-DOMAIN/og-image.jpg" />
+    content="Clases de tenis para niños y jóvenes en Lima, con enfoque en alto rendimiento. Agenda tu clase de prueba." />
+  <meta property="og:image" content="https://alfa-tenis.vercel.app/images/og-image.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:type" content="image/jpeg" />
+  <meta property="og:image:alt" content="Alfa Tenis — academia de tenis para niños y jóvenes en Lima." />
 
   <!-- Twitter -->
-  <meta property="twitter:card" content="summary_large_image" />
-  <meta property="twitter:url" content="https://REPLACE-WITH-YOUR-DOMAIN/" />
-  <meta property="twitter:title" content="Alfa Tenis | Academia de Tenis en Lima" />
-  <meta property="twitter:description"
-    content="Clases de tenis para niños y jóvenes en un ambiente seguro y divertido. Solicita tu clase de prueba gratis." />
-  <meta property="twitter:image"
-    content="https://REPLACE-WITH-YOUR-DOMAIN/og-image.jpg" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Alfa Tenis | Academia de Tenis en Lima" />
+  <meta name="twitter:description"
+    content="Clases de tenis para niños y jóvenes en Lima, con enfoque en alto rendimiento. Agenda tu clase de prueba." />
+  <meta name="twitter:image" content="https://alfa-tenis.vercel.app/images/og-image.jpg" />
 
-  <!-- Geo Tags (Generic) -->
-  <meta name="geo.region" content="PE-LMA" />
-  <meta name="geo.placename" content="Lima" />
-  <meta name="geo.position" content="-12.046374;-77.042793" />
-  <meta name="ICBM" content="-12.046374, -77.042793" />
-
-  <!-- Structured Data (JSON-LD) -->
+  <!-- Structured Data (JSON-LD).
+       No priceRange: the client has not confirmed any price, and the old value
+       was an unsupported claim. No sameAs: no social profile URLs yet.
+       Weekend classes are advertised but have no stated times, so only the
+       confirmed weekday hours are encoded. -->
   <script type="application/ld+json">
-      {
-        "@context": "https://schema.org",
-        "@type": "SportsClub",
-        "name": "Alfa Tenis",
-        "image": "https://REPLACE-WITH-YOUR-DOMAIN/og-image.jpg",
-        "description": "Academia de tenis para niños y jóvenes en Lima. Ambiente seguro y divertido con entrenadores calificados en el Complejo Deportivo FAP Monterrico.",
-        "address": {
-          "@type": "PostalAddress",
-          "streetAddress": "Complejo Deportivo FAP Monterrico, Fundo Odría",
-          "addressLocality": "Lima",
-          "addressRegion": "Lima",
-          "addressCountry": "PE"
-        },
-        "url": "https://REPLACE-WITH-YOUR-DOMAIN/",
-        "telephone": "+51997222869",
-        "priceRange": "$$",
-        "openingHoursSpecification": [
-          {
-            "@type": "OpeningHoursSpecification",
-            "dayOfWeek": [
-              "Monday",
-              "Tuesday",
-              "Wednesday",
-              "Thursday",
-              "Friday"
-            ],
-            "opens": "16:00",
-            "closes": "19:00"
-          }
-        ]
-      }
-    </script>
+    {
+      "@context": "https://schema.org",
+      "@type": "SportsClub",
+      "name": "Alfa Tenis",
+      "description": "Academia de tenis para niños y jóvenes en Lima, con entrenadores calificados y enfoque en alto rendimiento.",
+      "image": "https://alfa-tenis.vercel.app/images/og-image.jpg",
+      "url": "https://alfa-tenis.vercel.app/",
+      "telephone": "+51997222869",
+      "email": "alfa.tenis.peru@gmail.com",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Complejo Deportivo FAP Monterrico, Fundo Odría",
+        "addressLocality": "Lima",
+        "addressRegion": "Lima",
+        "addressCountry": "PE"
+      },
+      "openingHoursSpecification": [
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+          "opens": "16:00",
+          "closes": "19:00"
+        }
+      ]
+    }
+  </script>
 </head>
 
 <body>

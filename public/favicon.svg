@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Alfa Tenis">
+  <rect width="64" height="64" rx="14" fill="#0f172a"/>
+  <circle cx="32" cy="32" r="17" fill="#ccff00"/>
+  <path d="M25.96 18.62 A18 18 0 0 0 25.96 45.38" fill="none" stroke="#0f172a" stroke-width="2.8" stroke-linecap="round"/>
+  <path d="M38.04 18.62 A18 18 0 0 1 38.04 45.38" fill="none" stroke="#0f172a" stroke-width="2.8" stroke-linecap="round"/>
+</svg>
