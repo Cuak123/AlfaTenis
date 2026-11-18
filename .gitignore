@@ -22,3 +22,11 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Source photos that show identifiable minors. This repo is PUBLIC: anything
+# committed here is downloadable by anyone from raw.githubusercontent.com, at
+# every historical path, and a later deletion does not take it back. No
+# parental consent is on file (Ley N.° 29733), so these stay out of git
+# entirely rather than merely out of the build.
+# See assets-source/README.md.
+assets-source/restricted/
