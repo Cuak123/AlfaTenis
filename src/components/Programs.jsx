@@ -1,92 +1,92 @@
-import React from 'react';
-import { Users, Zap, Baby, CheckCircle, ArrowRight } from 'lucide-react';
-import { waLink } from '../config/site';
+import { ArrowRight, Baby, Check, Users, Zap } from 'lucide-react';
+import { programs } from '../content/programs.js';
+import { waLinkProps } from '../lib/whatsapp.js';
+import PendingBadge from './PendingBadge.jsx';
 
-const programs = [
-    {
-        id: 1,
-        title: "Mini Tenis & Kids",
-        icon: <Baby size={40} className="text-brand-neon" />,
-        description: "Para niños de 4 a 10 años. Desarrollamos coordinación, diversión y los fundamentos básicos del deporte.",
-        features: ["Pelotas de baja presión", "Canchas adaptadas", "Metodología lúdica", "Evaluaciones trimestrales"],
-        color: "border-brand-neon",
-        bgHover: "hover:shadow-brand-neon/20",
-        message: "Hola, me gustaría agendar una clase de prueba para el programa de Niños."
-    },
-    {
-        id: 2,
-        title: "Adultos & Social",
-        icon: <Users size={40} className="text-brand-blue" />,
-        description: "Mejora tu técnica, ponte en forma y conoce gente nueva. Clases grupales dinámicas para todos los niveles.",
-        features: ["Clínicas de técnica", "Partidos de práctica", "Horarios flexibles (Noche/Mañana)", "Eventos sociales"],
-        color: "border-brand-blue",
-        bgHover: "hover:shadow-brand-blue/20",
-        message: "Hola, me gustaría agendar una clase de prueba para el programa de Adultos."
-    },
-    {
-        id: 3,
-        title: "Alto Rendimiento",
-        icon: <Zap size={40} className="text-purple-500" />,
-        description: "Entrenamiento intensivo para jugadores de competición. Enfoque físico, táctico y mental.",
-        features: ["Planificación personalizada", "Preparación física específica", "Acompañamiento en torneos", "Videoanálisis"],
-        color: "border-purple-500",
-        bgHover: "hover:shadow-purple-500/20",
-        message: "Hola, estoy interesado en una clase de prueba / evaluación para el equipo de Alto Rendimiento."
-    }
-];
+/** Icon keys from src/content/programs.js, resolved here so content stays JSX-free. */
+const ICONS = { baby: Baby, users: Users, zap: Zap };
 
-const Programs = () => {
-    return (
-        <section id="programas" className="py-20 bg-brand-dark/50 relative">
-            <div className="container mx-auto px-6">
-                <div className="text-center mb-16">
-                    <h2 className="text-3xl md:text-5xl font-extrabold text-white mb-4">
-                        Nuestros <span className="text-brand-neon">Programas</span>
-                    </h2>
-                    <p className="text-gray-400 max-w-2xl mx-auto">
-                        Tenemos el plan perfecto para ti, sin importar tu edad o nivel de juego.
-                    </p>
-                </div>
+export default function Programs() {
+  return (
+    <section
+      id="programas"
+      className="border-t border-white/10 bg-slate-900/40 py-20 sm:py-28"
+    >
+      <div className="mx-auto w-full max-w-content px-5 sm:px-8">
+        <div className="max-w-2xl">
+          <p className="text-[0.7rem] font-semibold uppercase tracking-[0.18em] text-brand-neon sm:text-sm">
+            Programas
+          </p>
+          <h2 className="mt-4 text-[1.75rem] font-extrabold leading-tight sm:text-4xl lg:text-5xl">
+            Encuentra tu <span className="text-brand-neon">nivel</span>
+          </h2>
+          <p className="mt-5 text-base leading-relaxed text-slate-300 sm:text-lg">
+            Grupos por edad y nivel, con un plan de trabajo para cada etapa.
+          </p>
+        </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                    {programs.map((program) => (
-                        <div
-                            key={program.id}
-                            className={`bg-slate-800/40 p-8 rounded-3xl border border-white/5 ${program.color} hover:border-opacity-100 border-opacity-30 transition-all duration-300 hover:-translate-y-2 shadow-xl ${program.bgHover} flex flex-col`}
-                        >
-                            <div className="mb-6 bg-white/5 w-20 h-20 rounded-2xl flex items-center justify-center">
-                                {program.icon}
-                            </div>
+        <ul className="mt-12 grid gap-5 sm:mt-16 lg:grid-cols-3 lg:gap-6">
+          {programs.map((program) => {
+            const Icon = ICONS[program.icon];
+            return (
+              <li
+                key={program.id}
+                className="flex flex-col rounded-2xl border border-white/10 bg-white/5 p-6 sm:p-7"
+              >
+                {Icon ? (
+                  <Icon aria-hidden="true" className="h-8 w-8 text-brand-neon" />
+                ) : null}
 
-                            <h3 className="text-2xl font-bold text-white mb-3">{program.title}</h3>
-                            <p className="text-gray-400 mb-8 leading-relaxed">
-                                {program.description}
-                            </p>
+                <h3 className="mt-4 text-xl font-bold text-white">
+                  {program.name}
+                  {program.confirmed ? null : <PendingBadge />}
+                </h3>
 
-                            <ul className="mb-8 space-y-3 flex-grow">
-                                {program.features.map((feature, idx) => (
-                                    <li key={idx} className="flex items-center gap-3 text-gray-300 text-sm">
-                                        <CheckCircle size={16} className={`text-opacity-80 ${program.id === 1 ? 'text-brand-neon' : program.id === 2 ? 'text-brand-blue' : 'text-purple-500'}`} />
-                                        {feature}
-                                    </li>
-                                ))}
-                            </ul>
+                {/* No age band is invented — the line is simply omitted when
+                    the client has not confirmed one. */}
+                {program.ageRange ? (
+                  <p className="mt-1 text-sm font-semibold text-brand-neon">
+                    {program.ageRange}
+                  </p>
+                ) : null}
 
-                            <a
-                                href={waLink(program.message)}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="w-full py-4 rounded-xl font-bold text-center flex items-center justify-center gap-2 transition-all bg-white hover:bg-gray-100 text-brand-dark group transform hover:scale-[1.02]"
-                            >
-                                Agendar Clase de Prueba
-                                <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
-                            </a>
-                        </div>
-                    ))}
-                </div>
-            </div>
-        </section>
-    );
-};
+                <p className="mt-3 text-sm leading-relaxed text-slate-300">
+                  {program.summary}
+                </p>
 
-export default Programs;
+                <ul className="mt-5 space-y-2.5">
+                  {program.features.map((feature) => (
+                    <li
+                      key={feature}
+                      className="flex items-start gap-2.5 text-sm text-slate-200"
+                    >
+                      <Check
+                        aria-hidden="true"
+                        className="mt-0.5 h-4 w-4 shrink-0 text-brand-neon"
+                      />
+                      <span>{feature}</span>
+                    </li>
+                  ))}
+                </ul>
+
+                <a
+                  {...waLinkProps(program.messageKey)}
+                  className="group mt-7 inline-flex min-h-[48px] items-center justify-center gap-2 rounded-full border border-brand-neon/40 px-5 text-sm font-bold text-brand-neon transition-colors hover:bg-brand-neon hover:text-brand-dark sm:mt-auto"
+                >
+                  <span>
+                    Consultar por {program.name}
+                    <span className="sr-only"> en WhatsApp</span>
+                  </span>
+                  <ArrowRight
+                    aria-hidden="true"
+                    className="h-4 w-4 shrink-0 transition-transform group-hover:translate-x-1"
+                  />
+                </a>
+              </li>
+            );
+          })}
+        </ul>
+      </div>
+    </section>
+  );
+}

@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Montserrat:wght@400;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@700;800;900&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -7,45 +7,56 @@
 @layer base {
   html {
     scroll-behavior: smooth;
+    /* Stops iOS inflating text in landscape. */
+    -webkit-text-size-adjust: 100%;
   }
 
   body {
-    @apply bg-brand-dark text-white font-sans antialiased;
+    @apply bg-brand-dark font-sans text-white antialiased;
+  }
+
+  h1,
+  h2,
+  h3 {
+    @apply font-display;
+    /* Spanish has long compounds; let them break rather than overflow at 375px. */
+    overflow-wrap: break-word;
+  }
+
+  /* One visible focus style for the whole site. Never remove without a
+     replacement — keyboard users have nothing else to go on. */
+  :focus-visible {
+    @apply outline-none ring-2 ring-brand-neon ring-offset-2 ring-offset-brand-dark;
   }
 }
 
-/* Animations referenced by components (animate-fadeIn / animate-scaleIn /
-   animate-bounce-slow) and the modal scrollbar. Defined here because they are
-   not part of Tailwind's defaults or tailwind.config.js. */
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
-@keyframes scaleIn {
-  from { opacity: 0; transform: scale(0.96); }
-  to { opacity: 1; transform: scale(1); }
-}
-@keyframes bounceSlow {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-6px); }
-}
-
 @layer utilities {
-  .animate-fadeIn { animation: fadeIn 0.6s ease-out both; }
-  .animate-scaleIn { animation: scaleIn 0.3s ease-out both; }
-  .animate-bounce-slow { animation: bounceSlow 2.5s ease-in-out infinite; }
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(12px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
 
-  .custom-scrollbar::-webkit-scrollbar { width: 6px; }
-  .custom-scrollbar::-webkit-scrollbar-thumb {
-    background: rgba(255, 255, 255, 0.15);
-    border-radius: 3px;
+  .animate-fade-in-up {
+    animation: fadeInUp 0.6s ease-out both;
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .animate-fadeIn,
-  .animate-scaleIn,
-  .animate-bounce-slow {
-    animation: none;
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
   }
 }

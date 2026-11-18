@@ -1,63 +1,87 @@
-import React from 'react';
-import { ArrowRight } from 'lucide-react';
-import heroBg from '../assets/hero_bg.png';
-import { brand, waLink } from '../config/site';
+import { ArrowRight, Clock, MapPin } from 'lucide-react';
+import { hero } from '../content/hero.js';
+import { primaryVenue } from '../content/venues.js';
+import { waLinkProps } from '../lib/whatsapp.js';
 
-const Hero = () => {
-    return (
-        <section id="inicio" className="relative h-screen min-h-[600px] flex items-center justify-center overflow-hidden">
-            {/* Background Image with Overlay */}
-            <div className="absolute inset-0 z-0">
-                <img
-                    src={heroBg}
-                    alt="Tennis Court Action"
-                    className="w-full h-full object-cover"
-                />
-                <div className="absolute inset-0 bg-gradient-to-b from-brand-dark/80 via-brand-dark/50 to-brand-dark"></div>
+/**
+ * Above-the-fold section.
+ *
+ * The background photo is the LCP element: eager, high fetch priority, with
+ * explicit dimensions so it reserves its box and shifts nothing. The copy is
+ * deliberately NOT animated in — gating the largest text behind an entrance
+ * animation delays LCP and leaves it invisible if the animation never runs.
+ */
+export default function Hero() {
+  return (
+    <section
+      id="inicio"
+      className="relative isolate flex min-h-[100svh] flex-col overflow-hidden"
+    >
+      <img
+        src={hero.image.src}
+        alt={hero.image.alt}
+        width={hero.image.width}
+        height={hero.image.height}
+        loading="eager"
+        fetchPriority="high"
+        decoding="async"
+        className="absolute inset-0 -z-20 h-full w-full scale-105 object-cover object-[38%_28%] sm:scale-100 sm:object-center"
+      />
+
+      {/* Keeps the player readable up top while the copy sits on near-solid
+          brand-dark. Bottom-up on mobile, left-to-right from `sm`. */}
+      <div
+        aria-hidden="true"
+        className="absolute inset-0 -z-10 bg-gradient-to-t from-brand-dark from-32% via-brand-dark/75 via-62% to-brand-dark/25 sm:bg-gradient-to-r sm:from-brand-dark sm:from-8% sm:via-brand-dark/80 sm:via-52% sm:to-brand-dark/15"
+      />
+
+      <div className="mx-auto flex w-full max-w-content flex-1 flex-col justify-end px-5 pb-28 pt-28 sm:justify-center sm:px-8 sm:py-28">
+        <div className="max-w-xl lg:max-w-2xl">
+          <p className="mb-4 text-[0.7rem] font-semibold uppercase tracking-[0.18em] text-brand-neon sm:text-sm">
+            {hero.eyebrow}
+          </p>
+
+          <h1 className="text-[2.125rem] font-extrabold leading-[1.06] sm:text-5xl lg:text-[4rem]">
+            {hero.headline}{' '}
+            <span className="block text-brand-neon">{hero.headlineAccent}</span>
+          </h1>
+
+          <p className="mt-5 max-w-md text-base leading-relaxed text-slate-200 sm:mt-6 sm:max-w-lg sm:text-lg">
+            {hero.subcopy}
+          </p>
+
+          <div className="mt-8 sm:mt-10">
+            <a
+              {...waLinkProps('trialClass')}
+              className="group inline-flex min-h-[52px] w-full items-center justify-center gap-2 rounded-full bg-brand-neon px-7 text-base font-bold text-brand-dark transition-colors hover:bg-brand-neon-hover sm:w-auto sm:text-lg"
+            >
+              {hero.ctaLabel}
+              <ArrowRight
+                aria-hidden="true"
+                className="h-5 w-5 shrink-0 transition-transform group-hover:translate-x-1"
+              />
+            </a>
+            <p className="mt-3 text-sm text-slate-300">{hero.ctaNote}</p>
+          </div>
+
+          <dl className="mt-8 flex flex-col gap-3 border-t border-white/10 pt-6 text-sm text-slate-200 sm:mt-10 sm:flex-row sm:gap-8">
+            <div className="flex items-start gap-2.5">
+              <Clock aria-hidden="true" className="mt-0.5 h-4 w-4 shrink-0 text-brand-neon" />
+              <div>
+                <dt className="sr-only">Horarios</dt>
+                <dd>{primaryVenue.hours}</dd>
+              </div>
             </div>
-
-            {/* Content */}
-            <div className="relative z-10 container mx-auto px-6 text-center md:text-left">
-                <div className="max-w-3xl">
-                    <h2 className="text-brand-neon font-bold tracking-widest text-sm uppercase mb-4 animate-fadeIn">
-                        {brand.name}
-                    </h2>
-                    <h1 className="text-5xl md:text-7xl font-extrabold text-white leading-tight mb-6 drop-shadow-lg">
-                        Domina la Cancha. <br />
-                        <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-blue to-white">
-                            Tu Evolución Empieza Aquí.
-                        </span>
-                    </h1>
-                    <p className="text-gray-300 text-lg md:text-xl mb-8 max-w-2xl leading-relaxed">
-                        Formación de tenis para niños y jóvenes en un ambiente seguro y
-                        divertido. Entrena con profesores calificados en el Complejo
-                        Deportivo FAP Monterrico.
-                    </p>
-
-                    <div className="flex flex-col md:flex-row gap-4 justify-center md:justify-start">
-                        <a
-                            href={waLink('Hola, quiero solicitar una clase de prueba gratis en Alfa Tenis.')}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="group bg-brand-neon hover:bg-brand-neon-hover text-brand-dark px-8 py-4 rounded-full font-bold text-lg transition-all transform hover:scale-105 flex items-center justify-center gap-2 shadow-[0_0_20px_rgba(204,255,0,0.4)]"
-                        >
-                            Clase de prueba gratis
-                            <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-                        </a>
-                        <a
-                            href="#programas"
-                            className="bg-white/10 hover:bg-white/20 backdrop-blur-sm text-white px-8 py-4 rounded-full font-bold text-lg transition-all border border-white/20"
-                        >
-                            Conoce los Programas
-                        </a>
-                    </div>
-                </div>
+            <div className="flex items-start gap-2.5">
+              <MapPin aria-hidden="true" className="mt-0.5 h-4 w-4 shrink-0 text-brand-neon" />
+              <div>
+                <dt className="sr-only">Ubicación</dt>
+                <dd>{primaryVenue.shortLocation}</dd>
+              </div>
             </div>
-
-            {/* Decorative Elements */}
-            <div className="absolute bottom-0 left-0 w-full h-24 bg-gradient-to-t from-brand-dark to-transparent z-10"></div>
-        </section>
-    );
-};
-
-export default Hero;
+          </dl>
+        </div>
+      </div>
+    </section>
+  );
+}

@@ -1,80 +1,61 @@
-import React, { useState } from 'react';
-import { Plus, Minus, HelpCircle } from 'lucide-react';
+import { ChevronDown } from 'lucide-react';
+import { faqs } from '../content/faqs.js';
+import { waLinkProps } from '../lib/whatsapp.js';
 
-const faqs = [
-    {
-        question: "¿Necesito tener experiencia previa o raqueta propia?",
-        answer: "No es necesario. En nuestras clases de iniciación proporcionamos todo el material deportivo (raquetas y pelotas) para que puedas probar sin compromiso. A medida que avances, te asesoraremos para comprar tu propia raqueta."
-    },
-    {
-        question: "¿Qué pasa si llueve o no puedo asistir a una clase?",
-        answer: "Si la clase se cancela por lluvia, se reprograma automáticamente. Si no puedes asistir por motivos personales, puedes recuperar la clase en otro horario disponible avisando con 24 horas de anticipación."
-    },
-    {
-        question: "¿Cuáles son las formas de pago?",
-        answer: "Aceptamos pagos vía Yape, Plin, Transferencia Bancaria y Efectivo. Los pagos se realizan por adelantado al inicio de cada mes o paquete de clases."
-    },
-    {
-        question: "¿Ofrecen clases particulares?",
-        answer: "Sí, ofrecemos clases privadas (1 a 1) y semiprivadas (2 personas) para quienes buscan un avance más rápido y una corrección técnica personalizada. Los horarios se coordinan directamente con el entrenador."
-    },
-    {
-        question: "¿A partir de qué edad pueden empezar los niños?",
-        answer: "Nuestro programa de Mini Tenis (Bola Roja) acepta niños desde los 4 años de edad, enfocándonos en la psicomotricidad y la diversión."
-    }
-];
+/**
+ * Built on native <details>/<summary>: keyboard and screen-reader behaviour
+ * come for free, it works with JS disabled, and there is no open/closed state
+ * to keep in sync. <summary> allows heading content, so the question stays an
+ * <h3> and the document outline holds.
+ */
+export default function FAQ() {
+  return (
+    <section
+      id="faq"
+      className="border-t border-white/10 bg-slate-900/40 py-20 sm:py-28"
+    >
+      <div className="mx-auto w-full max-w-content px-5 sm:px-8">
+        <div className="max-w-2xl">
+          <p className="text-[0.7rem] font-semibold uppercase tracking-[0.18em] text-brand-neon sm:text-sm">
+            Preguntas frecuentes
+          </p>
+          <h2 className="mt-4 text-[1.75rem] font-extrabold leading-tight sm:text-4xl lg:text-5xl">
+            Antes de <span className="text-brand-neon">empezar</span>
+          </h2>
+        </div>
 
-const FAQ = () => {
-    const [openIndex, setOpenIndex] = useState(null);
+        <ul className="mt-10 max-w-3xl space-y-3 sm:mt-12">
+          {faqs.map((faq) => (
+            <li key={faq.id}>
+              <details className="group rounded-2xl border border-white/10 bg-white/5 open:bg-white/[0.07]">
+                <summary className="flex cursor-pointer list-none items-center justify-between gap-4 p-5 [&::-webkit-details-marker]:hidden">
+                  <h3 className="text-base font-bold text-white sm:text-lg">
+                    {faq.question}
+                  </h3>
+                  <ChevronDown
+                    aria-hidden="true"
+                    className="h-5 w-5 shrink-0 text-brand-neon transition-transform duration-200 group-open:rotate-180"
+                  />
+                </summary>
+                <p className="px-5 pb-5 text-sm leading-relaxed text-slate-300 sm:text-base">
+                  {faq.answer}
+                </p>
+              </details>
+            </li>
+          ))}
+        </ul>
 
-    const toggleFAQ = (index) => {
-        setOpenIndex(openIndex === index ? null : index);
-    };
-
-    return (
-        <section className="py-20 bg-brand-dark relative overflow-hidden">
-            <div className="container mx-auto px-6 max-w-4xl">
-                <div className="text-center mb-16">
-                    <span className="text-gray-400 font-bold tracking-widest text-sm uppercase mb-2 block flex items-center justify-center gap-2">
-                        <HelpCircle size={16} className="text-brand-neon" />
-                        Dudas Comunes
-                    </span>
-                    <h2 className="text-3xl md:text-5xl font-extrabold text-white mb-4">
-                        Preguntas <span className="text-brand-blue">Frecuentes</span>
-                    </h2>
-                </div>
-
-                <div className="space-y-4">
-                    {faqs.map((faq, index) => (
-                        <div
-                            key={index}
-                            className={`bg-slate-900/50 border ${openIndex === index ? 'border-brand-neon/50' : 'border-white/5'} rounded-2xl overflow-hidden transition-all duration-300`}
-                        >
-                            <button
-                                className="w-full p-6 flex items-center justify-between text-left hover:bg-white/5 transition-colors"
-                                onClick={() => toggleFAQ(index)}
-                            >
-                                <span className="text-lg font-bold text-white pr-8">{faq.question}</span>
-                                {openIndex === index ? (
-                                    <Minus className="text-brand-neon shrink-0" size={20} />
-                                ) : (
-                                    <Plus className="text-gray-400 shrink-0" size={20} />
-                                )}
-                            </button>
-
-                            <div
-                                className={`overflow-hidden transition-all duration-300 ${openIndex === index ? 'max-h-48 opacity-100' : 'max-h-0 opacity-0'}`}
-                            >
-                                <p className="p-6 pt-0 text-gray-400 leading-relaxed">
-                                    {faq.answer}
-                                </p>
-                            </div>
-                        </div>
-                    ))}
-                </div>
-            </div>
-        </section>
-    );
-};
-
-export default FAQ;
+        <p className="mt-8 max-w-3xl text-sm text-slate-300">
+          ¿Tienes otra pregunta?{' '}
+          <a
+            {...waLinkProps('general')}
+            className="rounded-sm font-bold text-brand-neon underline underline-offset-4 hover:text-brand-neon-hover"
+          >
+            Escríbenos por WhatsApp
+          </a>
+          .
+        </p>
+      </div>
+    </section>
+  );
+}
