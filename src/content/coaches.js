@@ -26,8 +26,24 @@
  *   3. "PLAY TENNS" (coach 4) read as the "PLAY TENNIS" certification that
  *      coach 1 also holds. Kept as `rawCertifications` so the typo is visible.
  *
- * NOT in the sheet, so absent here: photos, bios, and any head-coach or
- * seniority ranking. The order below is the sheet's order and implies nothing.
+ * NOT in the sheet, so absent here: bios, and any head-coach or seniority
+ * ranking. The order below is the sheet's order and implies nothing.
+ *
+ * ── Photos ──────────────────────────────────────────────────────────────────
+ * Added 2026-11-18 from the client's photo batch (see assets-source/README.md).
+ * Twelve portraits showed three men; the grouping by person is a visual reading
+ * and the name on each group came from the client's own filename inside it.
+ * Marco confirmed the three groups before any photo was wired in.
+ *
+ *   arnold-davila  <- coaches/unnamed/portrait-04.jpeg
+ *   andre-vilchez  <- coaches/unnamed/portrait-02.jpeg
+ *   luis-priale    <- coaches/named-by-client/luis-03.jpeg
+ *
+ * Each is a 780px head-and-shoulders square from a 1200x1600 original,
+ * downscaled to 384px WebP q85 — never upscaled, asserted at conversion.
+ *
+ * Romulo has NO photo: no fourth person appears anywhere in the batch. His
+ * card keeps the initials monogram, which is the honest fallback.
  *
  * @type {import('./types.js').Coach[]}
  */
@@ -42,7 +58,7 @@ export const coaches = [
     rawCertifications: 'PLAY TENNIS',
     clubs: ['Arraya Tenis', 'Regatas'],
     playerBackground: 'Circuito nacional, categoría competitiva',
-    photo: null,
+    photo: '/images/coaches/andre-vilchez.webp',
     displayNameNeedsReview: true,
     confirmed: true,
   },
@@ -71,7 +87,7 @@ export const coaches = [
     rawCertifications: 'PLAY & STAY / ITF NIVEL 1',
     clubs: ['FAP'],
     playerBackground: 'Circuito de tercera categoría',
-    photo: null,
+    photo: '/images/coaches/arnold-davila.webp',
     displayNameNeedsReview: true,
     confirmed: true,
   },
@@ -85,7 +101,7 @@ export const coaches = [
     rawCertifications: 'PLAY TENNS',
     clubs: ['Master', 'Boca Raton', 'Polo'],
     playerBackground: 'Circuito de tercera categoría',
-    photo: null,
+    photo: '/images/coaches/luis-priale.webp',
     displayNameNeedsReview: true,
     confirmed: true,
   },

@@ -39,13 +39,29 @@ export default function Coaches() {
               className="flex flex-col rounded-2xl border border-white/10 bg-white/5 p-6 sm:p-7"
             >
               <div className="flex items-center gap-4">
-                {/* Monogram stands in for the missing headshot. */}
-                <span
-                  aria-hidden="true"
-                  className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full border border-brand-neon/30 bg-brand-neon/10 text-lg font-extrabold text-brand-neon"
-                >
-                  {initialsOf(coach.name)}
-                </span>
+                {/* A real headshot where one exists; initials where none does.
+                    The monogram is not a placeholder to be filled with a stock
+                    face later — it is what an honest empty slot looks like.
+                    alt is empty on purpose: the name is in the heading right
+                    beside it, so announcing it twice only adds noise. */}
+                {coach.photo ? (
+                  <img
+                    src={coach.photo}
+                    alt=""
+                    width={80}
+                    height={80}
+                    loading="lazy"
+                    decoding="async"
+                    className="h-20 w-20 shrink-0 rounded-full border border-white/10 object-cover"
+                  />
+                ) : (
+                  <span
+                    aria-hidden="true"
+                    className="flex h-20 w-20 shrink-0 items-center justify-center rounded-full border border-brand-neon/30 bg-brand-neon/10 text-xl font-extrabold text-brand-neon"
+                  >
+                    {initialsOf(coach.name)}
+                  </span>
+                )}
 
                 <div className="min-w-0">
                   <h3 className="text-lg font-bold leading-tight text-white sm:text-xl">
