@@ -25,7 +25,11 @@ export default function Hero() {
         loading="eager"
         fetchPriority="high"
         decoding="async"
-        className="absolute inset-0 -z-20 h-full w-full scale-105 object-cover object-[38%_28%] sm:scale-100 sm:object-center"
+        /* The player sits at 31–48% of the photo's width. On a phone the image
+           is cropped hard on the horizontal axis, so x=40% is what keeps him in
+           frame; the vertical axis is fully covered there and does not matter.
+           From `sm` the 16:9 source nearly fills the box, so centre is fine. */
+        className="absolute inset-0 -z-20 h-full w-full object-cover object-[40%_center] sm:object-center"
       />
 
       {/* Keeps the player readable while the copy sits on near-solid
