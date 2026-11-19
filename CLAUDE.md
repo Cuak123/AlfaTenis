@@ -77,7 +77,10 @@ src/
   assets/             # imported images: Gallery/, Staff/, Testimonials/, Tournaments/
 public/               # copied verbatim to the site root — see the privacy note
   images/             # hero-entrenamiento.webp, og-image.jpg
+  images/coaches/     # three 384px headshots
+  images/gallery/     # six 800px tournament photos
   favicon.svg, apple-touch-icon.png, robots.txt, sitemap.xml
+assets-source/        # client originals, NOT published — see its README
 archive/              # kept but NOT published (flyer_2026.html) — see archive/README.md
 tailwind.config.js    # brand colors + fonts + maxWidth.content
 embed_image.py        # stale one-off, marked do-not-run
@@ -87,19 +90,20 @@ embed_image.py        # stale one-off, marked do-not-run
 
 **Live sections** are whatever `App.jsx` imports and renders, in order:
 
-`SiteHeader → Hero → About → Programs → Coaches → Competition → Location → FAQ
-→ Footer`, plus `FloatingWhatsApp`.
+`SiteHeader → Hero → About → Programs → Coaches → Competition → Gallery →
+Location → FAQ → Footer`, plus `FloatingWhatsApp`.
 
 Section ids: `inicio`, `nosotros`, `programas`, `profesores`, `competicion`,
-`ubicacion`, `faq`, `contacto` (on the footer). `About.jsx` is "Nosotros";
-`Coaches.jsx` is "Profesores"; `Competition.jsx` is "Competición".
+`galeria`, `ubicacion`, `faq`, `contacto` (on the footer). `About.jsx` is
+"Nosotros"; `Coaches.jsx` is "Profesores"; `Competition.jsx` is "Competición".
 
 **Orphan components — tracked but NOT imported**, left from the pre-rebuild
-site: `Header.jsx`, `Pricing.jsx`, `Testimonials.jsx`, `Gallery.jsx`. All four
-still import the legacy `src/config/site.js`. They are tree-shaken out of the
-bundle. Do not edit them expecting to change the site; if you revive one, port
-it to `src/content/` first. (`PendingBadge.jsx` is not an orphan — it is a
-shared helper used by several live sections.)
+site: `Header.jsx`, `Pricing.jsx`, `Testimonials.jsx`. All three still import
+the legacy `src/config/site.js`. They are tree-shaken out of the bundle. Do not
+edit them expecting to change the site; if you revive one, port it to
+`src/content/` first. (`PendingBadge.jsx` is not an orphan — it is a shared
+helper used by several live sections. `Gallery.jsx` used to be one; it was
+rewritten onto the content layer on 2026-11-18.)
 
 ## The content layer
 
@@ -115,6 +119,7 @@ TypeScript migration.
 | `coaches.js` | the four coaches, from the client's spreadsheet |
 | `venues.js` | the three venues, `openingHours`, `venuesSummary`, `mapLinks()` |
 | `tournaments.js` | the 2026 Torneo Relámpago |
+| `gallery.js` | the six gallery photos, with alt text |
 | `messages.js` | every prefilled WhatsApp message, by key |
 | `pricing.js`, `testimonials.js` | present but EMPTY / null — see Blocked below |
 
@@ -169,11 +174,22 @@ desktop.
   on the live site whether or not a page links to it. Two tournament photos of
   identifiable minors shipped this way for months before being moved out on
   2026-11-18. They now live in `src/assets/Tournaments/` (unimported, so never
-  emitted) and the flyer in `archive/`. **Do not move them back**, and do not
-  add client photos to `public/` without checking who is in them.
+  emitted) and the flyer in `archive/`. **Do not move them back**, and never add
+  a client photo to `public/` without first looking at who is in it.
   See `archive/README.md`.
+- **Client photo originals go in `assets-source/`, never `public/`.** Nothing
+  imports that folder, so Vite never emits it. Its README holds the full
+  original→new filename mapping. `assets-source/restricted/` is **gitignored**:
+  it holds photos with identifiable minors, and because this repo is public,
+  committing one would publish it on `raw.githubusercontent.com` at every path
+  forever — a later deletion does not take it back.
+- **`assets-source/inbox/` is a gitignored drop zone.** New photos land there
+  and are reviewed and sorted before anything is committed, so an unreviewed
+  photo cannot reach the repo by accident.
 - **No parental consent is on file for any photo of a minor** (Ley N.° 29733).
-  That blocks the gallery and any tournament photography.
+  Every photo must be checked for who is in the frame, including the
+  background — several portraits were set aside only because children were
+  playing on the next court.
 - **`src/config/site.js` is legacy.** The live config is `src/content/site.js`.
   Only the four orphan components still read the old one. Don't add to it.
 - **`index.html` SEO is real and done** — canonical, OG image (1200×630 at
@@ -213,6 +229,14 @@ Confirmed and live (from the client's spreadsheet and flyers, 2026-11-18):
   timetable and is no longer asserted anywhere.
 - **Tournament** — Torneo Relámpago Alfa Tenis 2026, shown as a **past** edition
   (3 October 2026). The `isPast` flag drives the wording.
+- **Coach photos** — three of four, from the client's photo batch. The portraits
+  were grouped by person (a visual reading) and each group took the name from
+  the client's own filename inside it; Marco confirmed the grouping on
+  2026-11-18 before anything was wired in. `coaches.js` records which source
+  file each one came from, so the mapping can be re-checked rather than trusted.
+- **Gallery** — six photos from the client's Instagram, all adults. Three show a
+  Wilson banner or ball in the background, which Marco confirmed is fine; using
+  the Wilson logo as a brand mark is still ruled out.
 
 Blocked, waiting on the client:
 
@@ -222,9 +246,20 @@ Blocked, waiting on the client:
 - **Testimonials** — `testimonials.js` is empty. The client's sheet has seven
   quotes marked `AUTORIZACION = SI`, but it is not established whether those
   students are minors; if so, consent must come from a parent.
-- **Coach photos**, and the **accented spelling** of the four coaches' names
-  (the sheet is ALL CAPS with no accents, so they are published unaccented).
-- **Tournament categories** — the two flyers disagree (`5A & 5B` vs `5B Mixto`).
+- **A photo of Rómulo** — no fourth person appears anywhere in the client's
+  batch, so his card renders the initials monogram. That is the designed
+  fallback, not a hole to fill with a stock face; when a photo arrives it is one
+  line in `coaches.js`.
+- **The accented spelling** of the four coaches' names. The client's sheet is
+  ALL CAPS with no accents, so they are published unaccented — very likely
+  André / Vílchez / Pérez / Rómulo / Dávila.
+- **Tournament categories** — three conflicting sources: the detailed flyer says
+  `5B Mixto`, the teaser says `Cat 5A & 5B`, and the trophy in `gallery-05`
+  reads `CATEGORÍA 4ta · SURCO — 2026`. The site shows `5A y 5B`. This is why
+  the trophy photo is in the gallery and not beside the Competición copy.
+- **The logo** as PNG or SVG with transparency. `assets-source/brand/` has it
+  only as a JPEG on pure black, which would render as a black rectangle on the
+  navy surface.
 - **Social URLs** — all empty in `site.js`; empty hides the link rather than
   rendering a dead `#`.
 - **The Wilson logo is excluded by Marco's brief**, even though it appears on a

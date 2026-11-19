@@ -30,3 +30,8 @@ dist-ssr
 # entirely rather than merely out of the build.
 # See assets-source/README.md.
 assets-source/restricted/
+
+# Drop zone for new client photos: ignored by default so nothing unreviewed can
+# be committed by accident. Sorted into assets-source/<category>/ after review.
+assets-source/inbox/*
+!assets-source/inbox/README.md
