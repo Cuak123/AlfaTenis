@@ -1,5 +1,17 @@
 # assets-source/
 
+> **The photo staging folders live OUTSIDE this project**, at
+> `~/alfa-tenis-fotos/` — `inbox-torneos-alumnos/` and `restricted/`.
+> They were moved there on 2026-11-23.
+>
+> Why: this project sits under `~/Documents`, which macOS syncs to iCloud.
+> 275 MB of client photos inside it took `npm run build` from **1.3 seconds to
+> 9 minutes 10 seconds**, and `npm run lint` from 2 seconds to minutes. Moving
+> them out put the build back to 1.28 s — measured both ways, not guessed.
+>
+> They are gitignored either way, so nothing about what is committed changes.
+> Drop new photos in `~/alfa-tenis-fotos/inbox-torneos-alumnos/` and say so.
+
 Original client photos. **Nothing here is published.**
 
 Vite only emits files that a module imports, and nothing imports this folder, so
@@ -21,7 +33,7 @@ They were moved out before any of it was committed.
   does not take it back.
 - Optimise to WebP at q85–90, max ~2000px, and **never upscale**.
 
-## `restricted/` — gitignored, do not commit
+## `restricted/` — now at `~/alfa-tenis-fotos/restricted/`, never committed
 
 Five photos with identifiable minors in frame. No parental consent is on file,
 which Ley N.° 29733 requires, so they are excluded from git entirely rather than

@@ -5,7 +5,13 @@ import reactRefresh from 'eslint-plugin-react-refresh'
 import { defineConfig, globalIgnores } from 'eslint/config'
 
 export default defineConfig([
-  globalIgnores(['dist']),
+  // `assets-source` holds client photo originals and no JavaScript at all.
+  // It has to be ignored, not just skipped by the `files` glob: ESLint still
+  // walks an unignored directory, and this project lives under ~/Documents,
+  // where iCloud dematerialises large files. Walking them triggers an
+  // on-demand download per file, which turned `npm run lint` from a
+  // two-second job into one that ran for minutes.
+  globalIgnores(['dist', 'assets-source', 'archive']),
   {
     files: ['**/*.{js,jsx}'],
     extends: [

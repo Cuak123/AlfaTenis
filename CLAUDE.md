@@ -179,13 +179,23 @@ desktop.
   See `archive/README.md`.
 - **Client photo originals go in `assets-source/`, never `public/`.** Nothing
   imports that folder, so Vite never emits it. Its README holds the full
-  original→new filename mapping. `assets-source/restricted/` is **gitignored**:
-  it holds photos with identifiable minors, and because this repo is public,
-  committing one would publish it on `raw.githubusercontent.com` at every path
-  forever — a later deletion does not take it back.
-- **`assets-source/inbox/` is a gitignored drop zone.** New photos land there
-  and are reviewed and sorted before anything is committed, so an unreviewed
-  photo cannot reach the repo by accident.
+  original→new filename mapping.
+- **Photo staging lives OUTSIDE the project**, at `~/alfa-tenis-fotos/`
+  (`inbox-torneos-alumnos/`, `restricted/`). New photos are dropped there and
+  reviewed; only optimised web versions come into `public/images/`. Photos with
+  identifiable minors stay in `restricted/` and never enter the repo: this repo
+  is public, so committing one would publish it on `raw.githubusercontent.com`
+  at every path forever, and a later deletion would not take it back.
+- **Never put a large media batch inside this project folder.** It sits under
+  `~/Documents`, which macOS syncs to iCloud. 275 MB of client photos in
+  `assets-source/` took `npm run build` from 1.3 s to **9 min 10 s** and
+  `npm run lint` from ~2 s to minutes; moving them out restored 1.28 s —
+  measured both ways. The signature is `du` (blocks on disk) far below `stat`
+  (logical size): iCloud has dematerialised the files and every read pulls them
+  back over the network. There are no `.icloud` stubs on modern macOS, so their
+  absence proves nothing. `eslint.config.js` ignores `assets-source` and
+  `archive` for the same reason — ESLint walks a directory even when its
+  `files` glob would skip everything in it.
 - **No parental consent is on file for any photo of a minor** (Ley N.° 29733).
   Every photo must be checked for who is in the frame, including the
   background — several portraits were set aside only because children were
