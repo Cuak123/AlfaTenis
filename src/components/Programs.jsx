@@ -86,6 +86,21 @@ export default function Programs() {
             );
           })}
         </ul>
+
+        {/* Programas is organised by age and level; Precios by format (group
+            vs individual). Nothing in the client's material maps one onto the
+            other, so this links the two sections instead of claiming a
+            correspondence that is not established. See src/content/pricing.js. */}
+        <p className="mt-8 text-sm text-slate-300">
+          Los paquetes de clases y sus tarifas están en{' '}
+          <a
+            href="#precios"
+            className="inline-block rounded-sm py-1 font-bold text-brand-neon underline underline-offset-4 hover:text-brand-neon-hover"
+          >
+            Planes y tarifas
+          </a>
+          .
+        </p>
       </div>
     </section>
   );

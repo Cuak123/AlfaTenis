@@ -60,7 +60,13 @@ export default function Gallery() {
           {gallery.map((image) => (
             <li
               key={image.id}
-              className="overflow-hidden rounded-2xl border border-white/10 bg-white/5"
+              /* `wide` exists for one photo: the only landscape shot in the
+                 set, where the whole point is the distance between the coach
+                 and the child. Cropped into a portrait cell it would lose one
+                 of them, so it spans two columns instead. */
+              className={`overflow-hidden rounded-2xl border border-white/10 bg-white/5${
+                image.wide ? ' sm:col-span-2' : ''
+              }`}
             >
               <img
                 src={image.src}
@@ -69,7 +75,11 @@ export default function Gallery() {
                 height={image.height}
                 loading="lazy"
                 decoding="async"
-                sizes="(min-width: 1024px) 22rem, (min-width: 640px) 45vw, calc(100vw - 2.5rem)"
+                sizes={
+                  image.wide
+                    ? '(min-width: 1024px) 46rem, (min-width: 640px) 92vw, calc(100vw - 2.5rem)'
+                    : '(min-width: 1024px) 22rem, (min-width: 640px) 45vw, calc(100vw - 2.5rem)'
+                }
                 className="h-full w-full object-cover"
               />
             </li>

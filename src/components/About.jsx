@@ -1,5 +1,5 @@
 import { Building2, GraduationCap, ShieldCheck } from 'lucide-react';
-import { about } from '../content/about.js';
+import { about, stats } from '../content/about.js';
 import { brand } from '../content/site.js';
 
 /** Icon keys from src/content/about.js, resolved here so content stays JSX-free. */
@@ -48,6 +48,27 @@ export default function About() {
             );
           })}
         </ul>
+
+        {/* Derived in about.js from coaches.js and venues.js, so the numbers
+            cannot drift away from the data they describe. `dl` because each
+            one is a figure and its meaning, not a list of equals. */}
+        {stats.length > 0 ? (
+          <dl className="mt-12 grid gap-5 border-t border-white/10 pt-10 sm:mt-16 sm:grid-cols-3">
+            {stats.map((stat) => (
+              <div key={stat.id}>
+                <dt className="sr-only">{stat.label}</dt>
+                <dd>
+                  <span className="block text-4xl font-extrabold text-brand-neon sm:text-5xl">
+                    {stat.value}
+                  </span>
+                  <span className="mt-1 block text-sm text-slate-300">
+                    {stat.label}
+                  </span>
+                </dd>
+              </div>
+            ))}
+          </dl>
+        ) : null}
       </div>
     </section>
   );

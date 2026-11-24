@@ -82,11 +82,13 @@
 /**
  * @typedef {Object} Testimonial
  * @property {string} id
- * @property {string} name
- * @property {string|null} role
- * @property {string} quote
- * @property {string|null} photo
- * @property {boolean} consent          Written permission to publish. No consent, no render.
+ * @property {string} name        As the client's sheet wrote it; accents are
+ *                                not added on a guess.
+ * @property {string} role        The sheet's ALUMNO O PADRE value.
+ * @property {string|null} level
+ * @property {string|null} tenure How long they have trained there.
+ * @property {string} quote       Their own words. Never written for them.
+ * @property {boolean} consent    Must be true to render.
  */
 
 /**

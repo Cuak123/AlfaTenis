@@ -30,6 +30,13 @@
  *   TODO (cliente): confirmar si el precio cambia por sede.
  * - What a class includes (racket, balls, duration). Not stated anywhere, so
  *   `includes` is empty rather than filled with plausible-sounding bullets.
+ * - WHICH PROGRAMME EACH PRICE BUYS. Programas is organised by age and level
+ *   (Mini Tenis, Jóvenes, Alto Rendimiento); these flyers are organised by
+ *   format (grupales, individuales). Nothing connects the two, so a visitor
+ *   reading "Mini Tenis & Kids" cannot tell whether S/ 180 is its price or
+ *   whether Alto Rendimiento costs more. Programas links here rather than
+ *   asserting a mapping. TODO (cliente): ¿qué tarifa corresponde a cada
+ *   programa?
  *
  * ── Address discrepancy noticed here ───────────────────────────────────────
  * These flyers write "Av. José Nicolás Rodrigo 100"; the client's spreadsheet

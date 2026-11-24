@@ -15,12 +15,32 @@
  * a photo, put it in the footer, or present Wilson as a partner in copy.
  *
  * ── On consent ──────────────────────────────────────────────────────────────
- * Everyone pictured is an adult; no minors appear in any of the six, which is
- * why a gallery is possible at all. They are still identifiable people, and
- * the academy posting a photo to its own Instagram is not the same as each
- * player agreeing to appear on a commercial site. Marco accepted that on
- * 2026-11-18. If anyone objects, remove their record here — nothing else
- * references these files.
+ * The first six show adults only. They are identifiable people, and the
+ * academy posting a photo to its own Instagram is not the same as each player
+ * agreeing to appear on a commercial site. Marco accepted that on 2026-11-18.
+ *
+ * The last three show MINORS, added 2026-11-24 after Marco said the client had
+ * confirmed photos of children may be published. Recorded precisely, because
+ * the distinction matters if it is ever questioned: what is on file is the
+ * academy's permission, relayed by Marco. Under Ley N.° 29733 the consent that
+ * counts for a minor is the parent's or guardian's, which is not the same
+ * thing. I raised that once; Marco made the call and it is his client
+ * relationship. If a parent objects, delete that record here and the file in
+ * public/images/gallery — nothing else references either.
+ *
+ * `gallery-10` is `Alumnos 3.jpeg`, the only photo in the whole batch showing
+ * an actual lesson in progress — a coach feeding balls to a child. It is by
+ * far the most persuasive image here for a parent: everything else is poses
+ * and prizes, this is the academy doing its job.
+ *
+ * It is also, word for word, the "kid-lesson photo" that Marco's original
+ * brief excluded by name. A later general permission for children's photos
+ * does not automatically override a specific exclusion, so it was held back
+ * and asked about; Marco cleared it on 2026-11-24.
+ *
+ * It is the one landscape frame in a set of portraits, and the distance
+ * between coach and child is the whole story, so it is `wide` and runs first
+ * rather than being cropped into a portrait cell.
  *
  * ── On the trophy photo ─────────────────────────────────────────────────────
  * `gallery-05` reads "TORNEO RELÁMPAGO 2026 · CAMPEÓN · CATEGORÍA 4ta ·
@@ -37,9 +57,12 @@
  * cell the grid renders. 85–156 KB each, all below the fold and lazy.
  *
  * ── Order ───────────────────────────────────────────────────────────────────
- * Deliberate, and independent of the file numbering: the trophy sits second so
- * the first row is not three near-identical group shots. Reorder freely by
- * moving records; the `src` values do not have to follow the array.
+ * Deliberate, and independent of the file numbering. Two rules: the trophy
+ * sits second so the first row is not three near-identical group shots, and
+ * the children are spread through the grid rather than grouped at the end.
+ * That second one is the point of adding them — a gallery where the adults
+ * come first and the kids are an afterthought still tells a parent this place
+ * is not for them. Reorder freely by moving records; `src` need not follow.
  *
  * @typedef {Object} GalleryImage
  * @property {string} id
@@ -47,16 +70,33 @@
  * @property {string} alt      Describes the photo; never the file name.
  * @property {number} width
  * @property {number} height
+ * @property {boolean} [wide]  Spans two columns from `sm`. For landscape
+ *                             photos that a portrait cell would ruin.
  *
  * @type {GalleryImage[]}
  */
 export const gallery = [
+  {
+    id: 'clase-con-entrenador',
+    src: '/images/gallery/gallery-10.webp',
+    alt: 'Un entrenador alcanza bolas desde un cesto mientras un niño se prepara para devolver el golpe, en la cancha de arcilla.',
+    width: 1300,
+    height: 975,
+    wide: true,
+  },
   {
     id: 'grupo-cuatro-jugadores',
     src: '/images/gallery/gallery-01.webp',
     alt: 'Cuatro jugadores posan con sus raquetas junto a la red, en la cancha de arcilla, delante del banner de Alfa Tenis.',
     width: 800,
     height: 969,
+  },
+  {
+    id: 'ninas-con-entrenador',
+    src: '/images/gallery/gallery-07.webp',
+    alt: 'Un entrenador posa en la cancha de arcilla con tres niñas que sostienen sus raquetas.',
+    width: 800,
+    height: 1067,
   },
   {
     id: 'trofeo-campeon',
@@ -66,11 +106,25 @@ export const gallery = [
     height: 1062,
   },
   {
+    id: 'grupo-juvenil',
+    src: '/images/gallery/gallery-08.webp',
+    alt: 'Grupo de jugadores jóvenes con sus raquetas, alineados a lo largo de la red de la cancha.',
+    width: 800,
+    height: 1067,
+  },
+  {
     id: 'finalistas-marcador',
     src: '/images/gallery/gallery-02.webp',
     alt: 'Dos jugadores abrazados junto a la red al terminar su partido, con el marcador de la cancha a un lado.',
     width: 800,
     height: 931,
+  },
+  {
+    id: 'dos-ninas-sonriendo',
+    src: '/images/gallery/gallery-09.webp',
+    alt: 'Dos niñas sonríen en la cancha de arcilla, con sus raquetas y gorras, al terminar la clase.',
+    width: 800,
+    height: 1067,
   },
   {
     id: 'rivales-en-la-red',

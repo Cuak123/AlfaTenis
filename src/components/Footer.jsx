@@ -64,7 +64,7 @@ export default function Footer() {
                 <li key={item.id}>
                   <a
                     href={`#${item.id}`}
-                    className="rounded-sm text-sm text-slate-300 transition-colors hover:text-white"
+                    className="inline-block rounded-sm py-1 text-sm text-slate-300 transition-colors hover:text-white"
                   >
                     {item.label}
                   </a>
@@ -80,13 +80,13 @@ export default function Footer() {
             <ul className="mt-4 space-y-3 text-sm text-slate-300">
               <li className="flex items-start gap-3">
                 <Phone aria-hidden="true" className="mt-0.5 h-4 w-4 shrink-0 text-brand-neon" />
-                <a href={`tel:+${whatsapp.phone}`} className="rounded-sm hover:text-white">
+                <a href={`tel:+${whatsapp.phone}`} className="inline-block rounded-sm py-1 hover:text-white">
                   {contact.phone}
                 </a>
               </li>
               <li className="flex items-start gap-3">
                 <Mail aria-hidden="true" className="mt-0.5 h-4 w-4 shrink-0 text-brand-neon" />
-                <a href={`mailto:${contact.email}`} className="rounded-sm break-all hover:text-white">
+                <a href={`mailto:${contact.email}`} className="inline-block rounded-sm break-all py-1 hover:text-white">
                   {contact.email}
                 </a>
               </li>

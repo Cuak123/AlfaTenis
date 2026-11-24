@@ -13,7 +13,7 @@ export const brand = {
   /** Rendered two-tone as `{0} {1}` in the header and footer. */
   nameParts: /** @type {[string, string]} */ (['Alfa', 'Tenis']),
   tagline:
-    'Academia de tenis para niños y jóvenes en Lima. Formamos jugadores en un ambiente seguro y divertido, con entrenadores calificados.',
+    'Academia de tenis en Lima, desde los 3 años y de principiantes a competitivos. Entrenadores con trayectoria en circuito nacional.',
   /** The angle the whole site sells on. */
   angle: 'alto rendimiento',
 };
@@ -63,6 +63,7 @@ export const nav = [
   { label: 'Competición', id: 'competicion', ready: true },
   { label: 'Galería', id: 'galeria', ready: true },
   { label: 'Precios', id: 'precios', ready: true },
+  { label: 'Testimonios', id: 'testimonios', ready: true },
   { label: 'Ubicación', id: 'ubicacion', ready: true },
   { label: 'Contacto', id: 'contacto', ready: true },
 ];
@@ -73,7 +74,7 @@ export const seo = {
       all four change together if a custom domain lands. */
   domain: 'https://alfa-tenis.vercel.app',
   ogImage: '/images/og-image.jpg',
-  titleDefault: 'Alfa Tenis | Academia de tenis para niños y jóvenes en Lima',
+  titleDefault: 'Alfa Tenis | Academia de tenis en Lima · desde los 3 años',
   descriptionDefault:
-    'Academia de tenis para niños y jóvenes en Lima, con entrenadores calificados y enfoque en alto rendimiento. Agenda tu clase de prueba.',
+    'Clases de tenis en Lima desde los 3 años, de principiantes a competitivos. Tres sedes y entrenadores de circuito nacional. Agenda tu clase de prueba.',
 };

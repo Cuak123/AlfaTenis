@@ -1,84 +1,73 @@
-import React from 'react';
-import { Star, Quote } from 'lucide-react';
-import testimonial1 from '../assets/Testimonials/testimonial_1.png';
-import testimonial2 from '../assets/Testimonials/testimonial_2.png';
-import testimonial3 from '../assets/Testimonials/testimonial_3.png';
+import { Quote } from 'lucide-react';
+import {
+  testimonials,
+  testimonialsSection,
+} from '../content/testimonials.js';
 
-const testimonials = [
-    {
-        id: 1,
-        name: "María Fernanda P.",
-        role: "Mamá de Alumno (Mini Tenis)",
-        image: testimonial1,
-        quote: "Increíble la paciencia y metodología de los profes. Mi hijo de 5 años siempre quiere ir a sus clases, ha mejorado mucho su coordinación.",
-        rating: 5
-    },
-    {
-        id: 2,
-        name: "Carlos Rodriguez",
-        role: "Alumno Adulto",
-        image: testimonial2,
-        quote: "Empecé de cero y el ambiente es genial. No solo aprendes técnica, sino que te diviertes y haces ejercicio. ¡Totalmente recomendado!",
-        rating: 5
-    },
-    {
-        id: 3,
-        name: "Andrea Vargas",
-        role: "Competencia",
-        image: testimonial3,
-        quote: "La preparación física y mental que dan para los torneos es otro nivel. Me han ayudado a ganar confianza en mi juego.",
-        rating: 5
-    }
-];
+/**
+ * "Testimonios" — five real students, in their own words.
+ *
+ * This replaces the pre-rebuild component, which read the legacy
+ * src/config/site.js and shipped three fabricated quotes attributed to invented
+ * people with AI-generated portraits.
+ *
+ * `consent` gates rendering, not just storage: a record without it is skipped
+ * even if someone adds one to the data file. That is the whole point of keeping
+ * the flag on each person rather than on the section.
+ *
+ * No photos and no star ratings. Neither exists, and a row of five identical
+ * five-star graphics is decoration pretending to be evidence.
+ *
+ * `blockquote` + `figcaption` rather than divs, so a screen reader announces
+ * the quote as a quotation and the attribution as its source.
+ */
+export default function Testimonials() {
+  const shown = testimonials.filter((t) => t.consent && t.quote);
+  if (shown.length === 0) return null;
 
-const Testimonials = () => {
-    return (
-        <section className="py-20 bg-brand-dark border-t border-white/5 relative overflow-hidden">
-            {/* Decorative Background */}
-            <div className="absolute top-1/2 left-0 w-64 h-64 bg-brand-neon/5 rounded-full blur-3xl -translate-y-1/2 -translate-x-1/2"></div>
+  return (
+    <section
+      id="testimonios"
+      className="border-t border-white/10 bg-brand-dark py-20 sm:py-28"
+    >
+      <div className="mx-auto w-full max-w-content px-5 sm:px-8">
+        <div className="max-w-2xl">
+          <p className="text-[0.7rem] font-semibold uppercase tracking-[0.18em] text-brand-neon sm:text-sm">
+            {testimonialsSection.eyebrow}
+          </p>
+          <h2 className="mt-4 text-[1.75rem] font-extrabold leading-tight sm:text-4xl lg:text-5xl">
+            {testimonialsSection.heading}{' '}
+            <span className="text-brand-neon">
+              {testimonialsSection.headingAccent}
+            </span>
+          </h2>
+          <p className="mt-5 text-base leading-relaxed text-slate-300 sm:text-lg">
+            {testimonialsSection.subcopy}
+          </p>
+        </div>
 
-            <div className="container mx-auto px-6 relative z-10">
-                <div className="text-center mb-16">
-                    <span className="text-brand-blue font-bold tracking-widest text-sm uppercase mb-2 block">
-                        Comunidad
-                    </span>
-                    <h2 className="text-3xl md:text-5xl font-extrabold text-white mb-4">
-                        Voces de la <span className="text-brand-neon">Cancha</span>
-                    </h2>
-                </div>
-
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                    {testimonials.map((testimonial) => (
-                        <div key={testimonial.id} className="bg-slate-900/50 p-8 rounded-3xl border border-white/5 relative hover:border-brand-neon/30 transition-all duration-300 hover:-translate-y-1 shadow-lg">
-                            <Quote className="absolute top-8 right-8 text-white/5" size={48} />
-
-                            <div className="flex items-center gap-4 mb-6">
-                                <img
-                                    src={testimonial.image}
-                                    alt={testimonial.name}
-                                    className="w-16 h-16 rounded-full object-cover border-2 border-brand-neon/50"
-                                />
-                                <div>
-                                    <h3 className="text-white font-bold">{testimonial.name}</h3>
-                                    <p className="text-brand-blue text-xs font-bold uppercase">{testimonial.role}</p>
-                                </div>
-                            </div>
-
-                            <div className="flex gap-1 mb-4">
-                                {[...Array(testimonial.rating)].map((_, i) => (
-                                    <Star key={i} size={16} className="fill-brand-neon text-brand-neon" />
-                                ))}
-                            </div>
-
-                            <p className="text-gray-300 italic leading-relaxed relative z-10">
-                                "{testimonial.quote}"
-                            </p>
-                        </div>
-                    ))}
-                </div>
-            </div>
-        </section>
-    );
-};
-
-export default Testimonials;
+        <ul className="mt-12 grid gap-5 sm:mt-16 sm:grid-cols-2 lg:grid-cols-3 lg:gap-6">
+          {shown.map((t) => (
+            <li key={t.id}>
+              <figure className="flex h-full flex-col rounded-2xl border border-white/10 bg-white/5 p-6 sm:p-7">
+                <Quote
+                  aria-hidden="true"
+                  className="h-7 w-7 shrink-0 text-brand-neon"
+                />
+                <blockquote className="mt-4 flex-1 text-base leading-relaxed text-slate-200">
+                  <p>{t.quote}</p>
+                </blockquote>
+                <figcaption className="mt-5 border-t border-white/10 pt-4">
+                  <span className="block font-bold text-white">{t.name}</span>
+                  <span className="mt-1 block text-sm text-slate-400">
+                    {[t.role, t.level, t.tenure].filter(Boolean).join(' · ')}
+                  </span>
+                </figcaption>
+              </figure>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </section>
+  );
+}

@@ -49,7 +49,7 @@ export default function FAQ() {
           ¿Tienes otra pregunta?{' '}
           <a
             {...waLinkProps('general')}
-            className="rounded-sm font-bold text-brand-neon underline underline-offset-4 hover:text-brand-neon-hover"
+            className="inline-block rounded-sm py-1 font-bold text-brand-neon underline underline-offset-4 hover:text-brand-neon-hover"
           >
             Escríbenos por WhatsApp
           </a>

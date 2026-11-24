@@ -4,8 +4,21 @@
  * Frequently asked questions. Carried over from the previous build, which
  * CLAUDE.md does not flag as placeholder.
  *
- * TODO (cliente): confirmar la política de recuperación de clases (24 h) y
- * los medios de pago, que cambian con frecuencia.
+ * ⚠️ This whole file needs an audit. It came from the build that also invented
+ * the prices and the testimonials, and several answers state specific
+ * operational policy that appears in NO client source: that rackets and balls
+ * are provided, that rain reschedules automatically, the 24-hour make-up rule,
+ * and the payment methods.
+ *
+ * Two were already contradicting confirmed data:
+ *   - the minimum age said 4; the client's sheet says 3. Corrected here, and
+ *     see src/content/programs.js for why 3 wins.
+ *   - "semiprivadas (2 personas)" is still below. The client's own price
+ *     flyers list only grupales and individuales, so this may be offering
+ *     something that does not exist. LEFT AS-IS deliberately rather than
+ *     deleted on a guess — removing a real service would be its own mistake.
+ *
+ * TODO (cliente): confirmar o corregir cada respuesta, una por una.
  *
  * @type {import('./types.js').Faq[]}
  */
@@ -38,6 +51,6 @@ export const faqs = [
     id: 'edad-minima',
     question: '¿A partir de qué edad pueden empezar los niños?',
     answer:
-      'El programa de Mini Tenis (bola roja) acepta niños desde los 4 años, con foco en la psicomotricidad y la diversión.',
+      'El programa de Mini Tenis (bola roja) acepta niños desde los 3 años, con foco en la psicomotricidad y la diversión.',
   },
 ];

@@ -29,7 +29,7 @@ export const hero = {
   headline: 'Domina la cancha.',
   headlineAccent: 'Tu evolución empieza aquí.',
   subcopy:
-    'Formamos a niños y jóvenes en un ambiente seguro y divertido, con entrenadores calificados.',
+    'Formamos jugadores desde los 3 años, de principiantes a competitivos, con entrenadores de circuito nacional.',
   ctaLabel: 'Agenda tu clase de prueba',
   ctaNote: 'Te respondemos por WhatsApp.',
   image: {
