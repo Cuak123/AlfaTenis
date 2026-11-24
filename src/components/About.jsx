@@ -1,13 +1,5 @@
-import { Building2, GraduationCap, ShieldCheck } from 'lucide-react';
 import { about, stats } from '../content/about.js';
 import { brand } from '../content/site.js';
-
-/** Icon keys from src/content/about.js, resolved here so content stays JSX-free. */
-const ICONS = {
-  shield: ShieldCheck,
-  graduation: GraduationCap,
-  building: Building2,
-};
 
 export default function About() {
   return (
@@ -29,25 +21,6 @@ export default function About() {
           </p>
         </div>
 
-        <ul className="mt-12 grid gap-5 sm:mt-16 sm:grid-cols-2 lg:grid-cols-3 lg:gap-6">
-          {about.highlights.map((item) => {
-            const Icon = ICONS[item.icon];
-            return (
-              <li
-                key={item.id}
-                className="rounded-2xl border border-white/10 bg-white/5 p-6"
-              >
-                {Icon ? (
-                  <Icon aria-hidden="true" className="h-8 w-8 text-brand-neon" />
-                ) : null}
-                <h3 className="mt-4 text-lg font-bold text-white">{item.title}</h3>
-                <p className="mt-2 text-sm leading-relaxed text-slate-300">
-                  {item.text}
-                </p>
-              </li>
-            );
-          })}
-        </ul>
 
         {/* Derived in about.js from coaches.js and venues.js, so the numbers
             cannot drift away from the data they describe. `dl` because each

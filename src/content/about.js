@@ -16,27 +16,23 @@ import { venues } from './venues.js';
 export const about = {
   eyebrow: 'Nosotros',
   title: 'Sobre',
-  highlights: [
-    {
-      id: 'ambiente',
-      icon: 'shield',
-      title: 'Ambiente seguro y divertido',
-      text: 'Un espacio donde cada jugador avanza a su ritmo, con acompañamiento cercano en cada clase.',
-    },
-    {
-      id: 'entrenadores',
-      icon: 'graduation',
-      title: 'Entrenadores calificados',
-      text: 'Metodología profesional enfocada en la técnica, la disciplina y el desarrollo de cada jugador.',
-    },
-    {
-      id: 'instalaciones',
-      icon: 'building',
-      title: 'Instalaciones de primer nivel',
-      text: 'Tres sedes en Lima para entrenar con comodidad, con iluminación para los turnos de la noche.',
-    },
-  ],
 };
+
+/*
+ * `highlights` lived here until 2026-11-24: three cards saying "Ambiente
+ * seguro y divertido", "Entrenadores calificados" and "Instalaciones de
+ * primer nivel".
+ *
+ * They were removed, not moved. Every one of them is a claim any tennis
+ * academy in Lima could make about itself, so they proved nothing while
+ * costing about 1.2 phone screens of scrolling. What is actually Alfa Tenis's
+ * own is directly below: 51 combined years, 4 coaches, 3 venues — figures
+ * that come from the client's data and that a competitor cannot copy.
+ *
+ * This is the one cut in the length pass that makes the section shorter AND
+ * stronger. If generic reassurance is wanted back, it belongs in the FAQ,
+ * where someone is actually asking the question.
+ */
 
 /**
  * Hard numbers for the "Nosotros" section.

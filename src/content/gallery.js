@@ -39,8 +39,11 @@
  * and asked about; Marco cleared it on 2026-11-24.
  *
  * It is the one landscape frame in a set of portraits, and the distance
- * between coach and child is the whole story, so it is `wide` and runs first
- * rather than being cropped into a portrait cell.
+ * between coach and child is the whole story, so it runs first and is never
+ * cropped. Since 2026-11-24 the section is a horizontal strip with a fixed
+ * height and automatic widths, so it simply occupies a wider slot — the
+ * `wide` flag that used to make it span two grid columns is no longer read
+ * by the component and is kept only as a note about the frame.
  *
  * ── On the trophy photo ─────────────────────────────────────────────────────
  * `gallery-05` reads "TORNEO RELÁMPAGO 2026 · CAMPEÓN · CATEGORÍA 4ta ·

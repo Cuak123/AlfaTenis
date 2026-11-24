@@ -3,18 +3,28 @@ import { gallery, gallerySection } from '../content/gallery.js';
 import { social } from '../content/site.js';
 
 /**
- * "Galería" — photos from the academy's own tournaments.
+ * "Galería" — a swipeable strip, not a stacked grid.
  *
- * This file replaces the pre-rebuild Gallery that read from the legacy
- * src/config/site.js and pointed at AI-generated stock images.
+ * As a grid this section was 4704px tall on a phone: 5.8 screens, 26% of the
+ * whole page, for ten portrait photos stacked one per row. Measured, which is
+ * why it changed.
  *
- * No lightbox. A gallery of three photos does not justify a focus trap, a
- * keyboard escape handler and a scroll lock; the images are shown at a size
- * where nothing is lost by not enlarging them.
+ * It is a scroll-snap strip, NOT a rotating carousel. The difference matters:
+ * every photo stays in the DOM and in the document order, so crawlers and
+ * screen readers get all ten, and nothing auto-advances away from a visitor
+ * who is still looking. The only thing that changed is that the overflow runs
+ * sideways instead of downward.
  *
- * Every image is lazy with explicit width/height, so the grid reserves its
- * boxes and nothing below it shifts while they load. `sizes` is declared so
- * the browser is not told to assume full viewport width for a grid cell.
+ * Fixed height with automatic width gives each photo its own natural
+ * proportion — the one landscape frame simply takes a wider slot instead of
+ * being cropped — and the width/height attributes let the browser reserve the
+ * right box before the file arrives, so this costs no layout shift.
+ *
+ * The container is focusable on purpose. A scrollable region that only
+ * responds to a mouse wheel or a finger is unusable from a keyboard, so it
+ * takes `tabIndex` and an accessible name and becomes arrow-key scrollable
+ * (WCAG 2.1.1). The partially visible next photo is the affordance that says
+ * "this moves" — no arrows needed.
  */
 export default function Gallery() {
   if (gallery.length === 0) return null;
@@ -41,8 +51,6 @@ export default function Gallery() {
             </p>
           </div>
 
-          {/* Only rendered when a real URL exists — an empty value hides the
-              link rather than shipping a dead `#`. */}
           {instagram ? (
             <a
               href={instagram}
@@ -56,17 +64,24 @@ export default function Gallery() {
           ) : null}
         </div>
 
-        <ul className="mt-12 grid gap-4 sm:mt-16 sm:grid-cols-2 lg:grid-cols-3 lg:gap-5">
+        {/* The strip lives INSIDE the page container rather than bleeding to
+            the viewport edge with its own padding. The first attempt did the
+            latter and the photos came out 176px left of the heading: with
+            `scroll-snap-type: mandatory`, the first item snaps straight past
+            the container's left padding, pinning scrollLeft to the padding
+            value and cancelling it. Keeping the strip in the container means
+            there is no padding for the snap to eat, and the left edge lines up
+            with every other section on the page. */}
+        <ul
+          tabIndex={0}
+          role="group"
+          aria-label={`${gallerySection.eyebrow}: ${gallery.length} fotos, se desliza en horizontal`}
+          className="custom-scrollbar mt-10 flex snap-x snap-mandatory gap-4 overflow-x-auto pb-4 sm:mt-14 sm:gap-5"
+        >
           {gallery.map((image) => (
             <li
               key={image.id}
-              /* `wide` exists for one photo: the only landscape shot in the
-                 set, where the whole point is the distance between the coach
-                 and the child. Cropped into a portrait cell it would lose one
-                 of them, so it spans two columns instead. */
-              className={`overflow-hidden rounded-2xl border border-white/10 bg-white/5${
-                image.wide ? ' sm:col-span-2' : ''
-              }`}
+              className="h-[300px] shrink-0 snap-start overflow-hidden rounded-2xl border border-white/10 bg-white/5 sm:h-[380px] lg:h-[420px]"
             >
               <img
                 src={image.src}
@@ -75,12 +90,7 @@ export default function Gallery() {
                 height={image.height}
                 loading="lazy"
                 decoding="async"
-                sizes={
-                  image.wide
-                    ? '(min-width: 1024px) 46rem, (min-width: 640px) 92vw, calc(100vw - 2.5rem)'
-                    : '(min-width: 1024px) 22rem, (min-width: 640px) 45vw, calc(100vw - 2.5rem)'
-                }
-                className="h-full w-full object-cover"
+                className="h-full w-auto max-w-none object-cover"
               />
             </li>
           ))}
