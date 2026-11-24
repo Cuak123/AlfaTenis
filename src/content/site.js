@@ -44,9 +44,11 @@ export const whatsapp = {
  * An empty string hides the link — a component must never render a dead `#`.
  */
 export const social = {
-  instagram: '',
-  facebook: '',
-  tiktok: '',
+  /* Taken from the client's own live site, alfatenis.com, on 2026-11-23.
+     An empty string hides the link rather than rendering a dead `#`. */
+  instagram: 'https://www.instagram.com/alfa.tenis.peru',
+  facebook: 'https://www.facebook.com/AcademiaAlfaTenis',
+  tiktok: 'https://www.tiktok.com/@alfa.tenis',
 };
 
 /**
@@ -60,7 +62,7 @@ export const nav = [
   { label: 'Profesores', id: 'profesores', ready: true },
   { label: 'Competición', id: 'competicion', ready: true },
   { label: 'Galería', id: 'galeria', ready: true },
-  { label: 'Precios', id: 'precios', ready: false },
+  { label: 'Precios', id: 'precios', ready: true },
   { label: 'Ubicación', id: 'ubicacion', ready: true },
   { label: 'Contacto', id: 'contacto', ready: true },
 ];

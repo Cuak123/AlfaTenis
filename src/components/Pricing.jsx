@@ -1,169 +1,151 @@
-import React from 'react';
-import { Check, Star, Zap, Ticket } from 'lucide-react';
-import { waLink } from '../config/site';
+import { ArrowRight, Info } from 'lucide-react';
+import {
+  perClass,
+  plans,
+  pricingSection,
+  reducedRate,
+} from '../content/pricing.js';
+import { waLinkProps } from '../lib/whatsapp.js';
 
-const Pricing = () => {
-    return (
-        <section id="precios" className="py-20 bg-brand-dark/30 relative border-t border-white/5">
-            <div className="container mx-auto px-6">
-                <div className="text-center mb-16">
-                    <span className="text-brand-neon font-bold tracking-widest text-sm uppercase mb-2 block animate-pulse">
-                        Inscripciones Abiertas 2026
-                    </span>
-                    <h2 className="text-3xl md:text-5xl font-extrabold text-white mb-6">
-                        Planes y <span className="text-brand-blue">Tarifas</span>
-                    </h2>
-                    <p className="text-gray-400 max-w-2xl mx-auto">
-                        Invierte en tu juego con nuestros paquetes flexibles. <span className="text-brand-neon font-bold">10% de descuento</span> promocional por tiempo limitado.
-                    </p>
-                </div>
+/**
+ * "Precios" — the client's real rates, from their own flyers.
+ *
+ * This file replaces the pre-rebuild Pricing component, which read the legacy
+ * src/config/site.js and showed invented figures.
+ *
+ * Two things the markup is doing deliberately:
+ *
+ * 1. The socio-FAP rate is labelled as restricted eligibility, not dressed up
+ *    as a discount. A visitor who is not a socio has to be able to tell at a
+ *    glance which column is theirs, and the regular rate is the one shown
+ *    large. Cheaper-looking numbers are not worth a wasted first message.
+ * 2. Price per class is computed from the figure beside it, so the two cannot
+ *    contradict each other after an edit.
+ *
+ * A tier with no reduced rate renders nothing in that slot — never a repeat of
+ * the tier above it.
+ */
+export default function Pricing() {
+  if (plans.length === 0) return null;
 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+  const showReduced =
+    reducedRate.available &&
+    plans.some((plan) => plan.options.some((o) => o.solesDescuento != null));
 
-                    {/* Card 1: Escuela de Tenis (Monthly) */}
-                    <div className="bg-slate-800/50 rounded-3xl p-8 border border-brand-blue/30 hover:border-brand-blue transition-all duration-300 relative overflow-hidden group">
-                        <div className="absolute top-0 right-0 bg-brand-blue text-white text-xs font-bold px-3 py-1 rounded-bl-xl">
-                            MENSUAL
-                        </div>
+  return (
+    <section
+      id="precios"
+      className="border-t border-white/10 bg-slate-900/40 py-20 sm:py-28"
+    >
+      <div className="mx-auto w-full max-w-content px-5 sm:px-8">
+        <div className="max-w-2xl">
+          <p className="text-[0.7rem] font-semibold uppercase tracking-[0.18em] text-brand-neon sm:text-sm">
+            {pricingSection.eyebrow}
+          </p>
+          <h2 className="mt-4 text-[1.75rem] font-extrabold leading-tight sm:text-4xl lg:text-5xl">
+            {pricingSection.heading}{' '}
+            <span className="text-brand-neon">{pricingSection.headingAccent}</span>
+          </h2>
+          <p className="mt-5 text-base leading-relaxed text-slate-300 sm:text-lg">
+            {pricingSection.subcopy}
+          </p>
+        </div>
 
-                        <div className="flex items-center gap-3 mb-6">
-                            <div className="p-3 rounded-full bg-brand-blue/20 text-brand-blue">
-                                <Star size={24} />
-                            </div>
-                            <h3 className="text-2xl font-bold text-white">Escuela de Tenis</h3>
-                        </div>
+        <div className="mt-12 grid gap-5 sm:mt-16 lg:grid-cols-2 lg:gap-6">
+          {plans.map((plan) => (
+            <div
+              key={plan.id}
+              className="flex flex-col rounded-2xl border border-white/10 bg-white/5 p-6 sm:p-7"
+            >
+              <h3 className="text-xl font-bold text-white sm:text-2xl">
+                {plan.name}
+              </h3>
+              <p className="mt-2 text-sm leading-relaxed text-slate-300">
+                {plan.summary}
+              </p>
 
-                        <div className="space-y-4">
-                            {/* Option 1 */}
-                            <div className="flex justify-between items-center p-4 rounded-xl bg-white/5 hover:bg-white/10 transition-colors">
-                                <div>
-                                    <p className="font-bold text-white">1 vez por semana</p>
-                                    <p className="text-xs text-gray-400">4 clases al mes</p>
-                                </div>
-                                <div className="text-right">
-                                    <p className="text-xl font-bold text-brand-blue">S/ 160</p>
-                                    <p className="text-xs text-gray-500">FAP: S/ 140</p>
-                                </div>
-                            </div>
-
-                            {/* Option 2 */}
-                            <div className="flex justify-between items-center p-4 rounded-xl bg-white/5 hover:bg-white/10 transition-colors border border-brand-blue/20">
-                                <div>
-                                    <p className="font-bold text-white">2 veces por semana</p>
-                                    <p className="text-xs text-gray-400">8 clases al mes</p>
-                                </div>
-                                <div className="text-right">
-                                    <p className="text-xl font-bold text-brand-blue">S/ 280</p>
-                                    <p className="text-xs text-gray-500">FAP: S/ 260</p>
-                                </div>
-                            </div>
-
-                            {/* Option 3 */}
-                            <div className="flex justify-between items-center p-4 rounded-xl bg-white/5 hover:bg-white/10 transition-colors">
-                                <div>
-                                    <p className="font-bold text-white">3 veces por semana</p>
-                                    <p className="text-xs text-gray-400">12 clases al mes</p>
-                                </div>
-                                <div className="text-right">
-                                    <p className="text-xl font-bold text-brand-blue">S/ 380</p>
-                                    <p className="text-xs text-gray-500">FAP: S/ 340</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div className="mt-8 pt-6 border-t border-white/10">
-                            <ul className="space-y-2 text-sm text-gray-400 mb-6">
-                                <li className="flex items-center gap-2"><Check size={14} className="text-brand-blue" /> Vacantes limitadas</li>
-                                <li className="flex items-center gap-2"><Check size={14} className="text-brand-blue" /> Grupos por nivel</li>
-                            </ul>
-                            <a
-                                href={waLink('Hola, quiero probar una clase gratis en la Escuela de Tenis.')}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="w-full block text-center bg-brand-blue/10 hover:bg-brand-blue hover:text-white text-brand-blue font-bold py-3 rounded-xl transition-all"
-                            >
-                                ¡Ven, prueba una clase gratis!
-                            </a>
-                        </div>
+              <ul className="mt-6 space-y-2.5">
+                {plan.options.map((option) => (
+                  <li
+                    key={option.id}
+                    className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1 rounded-xl border border-white/10 bg-brand-dark/40 px-4 py-3"
+                  >
+                    <div className="min-w-0">
+                      <span className="font-semibold text-white">
+                        {option.label}
+                      </span>
+                      {/* A single class has no per-class rate worth stating:
+                          it would just repeat the price beside it. */}
+                      {option.soles != null && option.classes > 1 ? (
+                        <span className="ml-2 text-xs text-slate-400">
+                          {pricingSection.currency}{' '}
+                          {perClass(option.soles, option.classes)} por clase
+                        </span>
+                      ) : null}
                     </div>
 
-                    {/* Card 2: Duales (Packages) */}
-                    <div className="bg-slate-800/50 rounded-3xl p-8 border border-brand-neon/30 hover:border-brand-neon transition-all duration-300 relative overflow-hidden group">
-                        <div className="absolute top-0 right-0 bg-brand-neon text-brand-dark text-xs font-bold px-3 py-1 rounded-bl-xl">
-                            PACKS FLEXIBLES
-                        </div>
+                    <div className="flex shrink-0 items-baseline gap-3">
+                      {/* The reduced rate sits second and smaller: it applies
+                          to fewer people than the rate beside it. */}
+                      {showReduced && option.solesDescuento != null ? (
+                        <span className="text-sm font-semibold text-brand-neon">
+                          {pricingSection.currency} {option.solesDescuento}
+                          <span className="ml-1 text-[0.65rem] font-bold uppercase tracking-wider text-brand-neon/80">
+                            {reducedRate.label}
+                          </span>
+                        </span>
+                      ) : null}
 
-                        <div className="flex items-center gap-3 mb-6">
-                            <div className="p-3 rounded-full bg-brand-neon/20 text-brand-neon">
-                                <Zap size={24} />
-                            </div>
-                            <h3 className="text-2xl font-bold text-white">Clases Duales</h3>
-                        </div>
-
-                        <div className="space-y-4">
-                            {/* Package 1 */}
-                            <div className="flex justify-between items-center p-4 rounded-xl bg-white/5 hover:bg-white/10 transition-colors">
-                                <div>
-                                    <p className="font-bold text-white">Pack 4 Clases</p>
-                                    <p className="text-xs text-brand-neon font-semibold">Básico</p>
-                                </div>
-                                <div className="text-right">
-                                    <p className="text-xl font-bold text-brand-neon">S/ 200</p>
-                                    <p className="text-xs text-gray-500">S/ 50 por clase</p>
-                                </div>
-                            </div>
-
-                            {/* Package 2 */}
-                            <div className="flex justify-between items-center p-4 rounded-xl bg-white/5 hover:bg-white/10 transition-colors border border-brand-neon/20">
-                                <div>
-                                    <p className="font-bold text-white">Pack 8 Clases</p>
-                                    <p className="text-xs text-brand-neon font-semibold">Recomendado</p>
-                                </div>
-                                <div className="text-right">
-                                    <p className="text-xl font-bold text-brand-neon">S/ 320</p>
-                                    <p className="text-xs text-gray-500">S/ 40 por clase</p>
-                                </div>
-                            </div>
-
-                            {/* Package 3 */}
-                            <div className="flex justify-between items-center p-4 rounded-xl bg-white/5 hover:bg-white/10 transition-colors">
-                                <div>
-                                    <p className="font-bold text-white">Pack 12 Clases</p>
-                                    <p className="text-xs text-brand-neon font-semibold">Pro</p>
-                                </div>
-                                <div className="text-right">
-                                    <p className="text-xl font-bold text-brand-neon">S/ 560</p>
-                                    <p className="text-xs text-gray-500">S/ 46 por clase</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div className="mt-8 pt-6 border-t border-white/10">
-                            <a
-                                href={waLink('Hola, quiero probar una clase gratis y conocer los packs de clases duales.')}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="w-full block text-center bg-brand-neon/10 hover:bg-brand-neon hover:text-brand-dark text-brand-neon font-bold py-3 rounded-xl transition-all"
-                            >
-                                ¡Ven, prueba una clase gratis!
-                            </a>
-                        </div>
+                      {option.soles != null ? (
+                        <span className="text-lg font-extrabold text-white">
+                          {pricingSection.currency} {option.soles}
+                        </span>
+                      ) : (
+                        <span className="text-sm text-slate-400">
+                          Precio por confirmar
+                        </span>
+                      )}
                     </div>
-                </div>
+                  </li>
+                ))}
+              </ul>
 
-                {/* Footer Note */}
-                <div className="mt-12 text-center">
-                    <div className="inline-flex items-center gap-2 bg-white/5 px-6 py-3 rounded-full border border-white/10">
-                        <Ticket size={20} className="text-brand-neon" />
-                        <p className="text-gray-300 text-sm">
-                            Consulta por nuestras <span className="text-white font-bold">Clases de Prueba</span> para todos los niveles.
-                        </p>
-                    </div>
-                </div>
+              {plan.includes.length > 0 ? (
+                <ul className="mt-5 space-y-2 text-sm text-slate-300">
+                  {plan.includes.map((item) => (
+                    <li key={item}>{item}</li>
+                  ))}
+                </ul>
+              ) : null}
 
+              <a
+                {...waLinkProps(plan.messageKey)}
+                className="group mt-7 inline-flex min-h-[48px] items-center justify-center gap-2 rounded-full border border-brand-neon/40 px-5 text-sm font-bold text-brand-neon transition-colors hover:bg-brand-neon hover:text-brand-dark sm:mt-auto"
+              >
+                <span>
+                  Consultar por {plan.name.toLowerCase()}
+                  <span className="sr-only"> en WhatsApp</span>
+                </span>
+                <ArrowRight
+                  aria-hidden="true"
+                  className="h-4 w-4 shrink-0 transition-transform group-hover:translate-x-1"
+                />
+              </a>
             </div>
-        </section>
-    );
-};
+          ))}
+        </div>
 
-export default Pricing;
+        {showReduced ? (
+          <p className="mt-8 flex items-start gap-2.5 text-sm leading-relaxed text-slate-300">
+            <Info aria-hidden="true" className="mt-0.5 h-4 w-4 shrink-0 text-brand-neon" />
+            <span>{reducedRate.explanation}</span>
+          </p>
+        ) : null}
+
+        <p className="mt-3 text-sm font-semibold text-brand-neon">
+          {pricingSection.ctaNote}
+        </p>
+      </div>
+    </section>
+  );
+}

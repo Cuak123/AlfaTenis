@@ -23,9 +23,13 @@ export const messages = {
   trialHighPerformance:
     'Hola, quiero una evaluación para el programa de Alto Rendimiento.',
 
-  /** Pricing CTAs. */
-  pricingSchool: 'Hola, quiero información sobre los planes de la Escuela de Tenis.',
-  pricingPacks: 'Hola, quiero información sobre los paquetes de clases duales.',
+  /** Pricing CTAs. Renamed 2026-11-23: the old keys described an "Escuela de
+      Tenis" plan and "clases duales", neither of which is what the client's
+      own flyers sell. */
+  pricingGroup:
+    'Hola, quiero información sobre los paquetes de clases grupales.',
+  pricingIndividual:
+    'Hola, quiero información sobre los paquetes de clases individuales.',
 
   /** Location / schedule. */
   schedule: 'Hola, quiero consultar los horarios disponibles.',

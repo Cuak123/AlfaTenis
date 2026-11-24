@@ -30,10 +30,12 @@
 /**
  * @typedef {Object} PriceOption
  * @property {string} id
+ * @property {number} classes            Classes in the pack; drives price-per-class.
  * @property {string} label
- * @property {string} detail
- * @property {number|null} soles        `null` = price not confirmed. Never guess.
- * @property {number|null} solesDescuento Reduced rate, same rule.
+ * @property {number|null} soles         Standard rate. `null` = not confirmed.
+ * @property {number|null} solesDescuento Reduced rate, or null when the flyer
+ *                                        lists none for this tier. Never a copy
+ *                                        of a neighbouring tier.
  */
 
 /**
@@ -41,8 +43,9 @@
  * @property {string} id
  * @property {string} name
  * @property {'mensual'|'paquete'} kind
+ * @property {string} summary
  * @property {PriceOption[]} options
- * @property {string[]} includes
+ * @property {string[]} includes         Empty when the client states nothing.
  * @property {string} messageKey
  */
 
