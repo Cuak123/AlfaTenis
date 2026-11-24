@@ -209,6 +209,16 @@ desktop.
   `src/content/site.js`. A custom domain means changing all four.
   The JSON-LD deliberately omits `priceRange`, `sameAs`, geo tags and
   `openingHoursSpecification` — each was an unsupported claim.
+- **`alfatenis.com` already exists** — a live WordPress site with the same
+  phone and email, which this project is meant to replace. Until the domain is
+  repointed, two sites would compete for the same brand, so `vercel.json`
+  serves `X-Robots-Tag: noindex, nofollow` **only when the host matches
+  `*.vercel.app`**. That condition is the point: when `alfatenis.com` is added
+  to this Vercel project it serves indexable with no edit, so nobody has to
+  remember to remove a `noindex` on launch day.
+  **`robots.txt` stays `Allow: /` on purpose.** Blocking crawling would stop
+  search engines from ever reading the `noindex`, which is how a staging URL
+  gets stuck in the index instead of leaving it.
 - **`vite.config.js` has `base: '/'`, which is correct for Vercel.** The old
   GitHub Pages project-site caveat no longer applies: the `gh-pages` branch was
   deleted on 2026-11-18 (archived locally as `gh-pages-archive`) and the Pages
