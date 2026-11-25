@@ -60,6 +60,9 @@ export const social = {
  * in two columns on a phone, where a link sitting several places from where
  * the section actually is reads as an error. Precios and Testimonios were out
  * of place here from before they existed as sections.
+ *
+ * `contacto` is last and is the footer's own id, not a section — it is the
+ * only entry here that does not correspond to one.
  */
 export const nav = [
   { label: 'Inicio', id: 'inicio', ready: true },
@@ -71,6 +74,7 @@ export const nav = [
   { label: 'Competición', id: 'competicion', ready: true },
   { label: 'Galería', id: 'galeria', ready: true },
   { label: 'Ubicación', id: 'ubicacion', ready: true },
+  { label: 'Preguntas', id: 'faq', ready: true },
   { label: 'Contacto', id: 'contacto', ready: true },
 ];
 
