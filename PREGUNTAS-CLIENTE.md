@@ -9,6 +9,27 @@ mejora el sitio pero no lo bloquea.
 
 ---
 
+## 0. Lo primero, porque sale de tu propia web
+
+Estas dos salen de **alfatenis.com**, tu sitio actual. No son invenciones
+nuestras: están publicadas ahí hoy. Solo hace falta saber si siguen vigentes.
+
+0.1 **¿La clase de prueba sigue siendo GRATIS?**
+    Tu web la anuncia como *"SOLICITA TU CLASE DE PRUEBA GRATIS"*. La web nueva
+    dice solo "Agenda tu clase de prueba", sin la palabra gratis, porque nadie
+    la había confirmado. Es el botón principal del sitio y aparece dos veces:
+    si es gratis, decirlo es probablemente lo que más puede subir las consultas
+    de todo lo que hemos hecho. Si ya no lo es, mejor saberlo antes de que
+    alguien llegue esperándolo.
+
+0.2 **¿El horario de clases sigue siendo de 4:00 a 7:00 p. m.?**
+    Tu web dice *"De las 4:00 pm a 7:00 pm"*. La web nueva **no publica ningún
+    horario de clases**: solo el horario del club (6:00 a. m. a 11:00 p. m.),
+    que es lo que figura en tu cuadro de alumnos. Un visitante que trabaja
+    necesita saber si hay cupo a su hora antes de escribir.
+
+---
+
 ## 1. Bloquean el lanzamiento
 
 Estas cinco afirmaciones **ya están en la web** y no salen de ningún documento
@@ -68,7 +89,7 @@ FAP). Lo que los flyers **no dicen**:
 
 11. **¿El horario de 6:00 a. m. a 11:00 p. m. es del club o de las clases?**
     La web lo publica como **horario de la sede**, no como horario de clases.
-    Si existe un horario de clases, falta.
+    Ver también la 0.2: tu web da 4:00–7:00 p. m. como horario de clases.
 
 12. **Las tildes de los cuatro profesores.** El cuadro viene en mayúsculas sin
     tildes, así que se publican sin tilde. Muy probablemente sean **André /

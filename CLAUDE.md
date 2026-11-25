@@ -347,6 +347,19 @@ what the site currently asserts, and it keeps the already-decided items in a
 closing section so they do not get re-asked. Keep the two in sync: this
 section is the working note, that file is the client-facing version.
 
+- **The free trial class.** alfatenis.com advertises "SOLICITA TU CLASE DE
+  PRUEBA GRATIS". This site's main CTA says only "Agenda tu clase de prueba"
+  and the word *gratis* appears nowhere. That is the same source the social
+  URLs and the JSON-LD `sameAs` were taken from, so the standard applied to it
+  has been inconsistent — but a free-class promise is a commercial commitment,
+  so it stays unpublished until the client confirms. Likely the single largest
+  conversion lever left.
+- **The class timetable.** Same situation: alfatenis.com says "De las 4:00 pm
+  a 7:00 pm", which is the timetable this repo removed in November as
+  unsourced. It is not invented — it has the client's own live site behind it.
+  It is still not published here, because that site is demonstrably stale in
+  other ways (it says "niños y jóvenes", which the client's own spreadsheet
+  contradicts, and it lists no prices at all).
 - **Minimum age** — the site says 3, from the client's spreadsheet
   ("A PARTIR DE LOS 3 AÑOS"). Carried-over copy said 4. Three won on
   provenance, but it is the first thing to confirm.
