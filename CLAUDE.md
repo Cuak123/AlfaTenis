@@ -14,7 +14,8 @@ Single-page marketing landing for **Alfa Tenis**, a tennis academy in Lima, Per�
 - **Differentiator / angle:** **high-performance coaching**.
 - **Repo:** `github.com/Cuak123/AlfaTenis`. Working branch is **`main`**.
 - **Deploy:** **Vercel**, auto-deploying on every push to `main`
-  (`vercel.json`). Live at **https://alfa-tenis.vercel.app**. A push to `main`
+  (`vercel.json`). Live at **https://alfatenis.com** (the deployment URL
+  `alfa-tenis.vercel.app` still works and stays `noindex`). A push to `main`
   ships to production in about 10 seconds.
 - **The repo is PUBLIC.** Anything committed is downloadable by anyone from
   `raw.githubusercontent.com`, at every historical path. Marco knows and has
@@ -267,7 +268,7 @@ desktop.
   Only the four orphan components still read the old one. Don't add to it.
 - **`index.html` SEO is real and done** — canonical, OG image (1200×630 at
   `/images/og-image.jpg`), favicon, `robots.txt`, `sitemap.xml`, JSON-LD.
-  The host `https://alfa-tenis.vercel.app` is repeated in **four** places:
+  The host `https://alfatenis.com` is repeated in **four** places:
   `index.html`, `robots.txt`, `sitemap.xml` and `seo.domain` in
   `src/content/site.js`. A custom domain means changing all four.
   The JSON-LD carries `priceRange` (checked against the real extremes in

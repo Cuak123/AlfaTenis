@@ -82,7 +82,7 @@ export const nav = [
 export const seo = {
   /** Live host. Mirrored in index.html, robots.txt and sitemap.xml —
       all four change together if a custom domain lands. */
-  domain: 'https://alfa-tenis.vercel.app',
+  domain: 'https://alfatenis.com',
   ogImage: '/images/og-image.jpg',
   titleDefault: 'Alfa Tenis | Academia de tenis en Lima · desde los 3 años',
   descriptionDefault:
