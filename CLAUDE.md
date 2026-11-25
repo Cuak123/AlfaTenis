@@ -78,7 +78,7 @@ src/
 public/               # copied verbatim to the site root — see the privacy note
   images/             # hero-forehand.webp (1800px), og-image.jpg (1200x630)
   images/coaches/     # three 384px headshots
-  images/gallery/     # ten photos: nine 800px portraits + one 1300px landscape
+  images/gallery/     # ten photos x2: the full size, plus a 640px-tall twin
   favicon.svg, apple-touch-icon.png, robots.txt, sitemap.xml
 assets-source/        # client originals, NOT published — see its README
 archive/              # kept but NOT published (flyer_2026.html) — see archive/README.md
@@ -200,6 +200,16 @@ WhatsApp CTAs must go through `waLink(key)` / `waLinkProps(key)` with a key from
 - **Assets:** components import from `src/assets/**` (Vite only emits what is
   imported); `public/` files are referenced by absolute path and are **always
   published**.
+- **Gallery photos ship in two sizes**, the original and a `-640.webp` twin,
+  chosen by `srcset`/`sizes` from `srcSetFor()` and `sizesFor()` in
+  `gallery.js`. A phone pulls 854 KB instead of 1,604 KB. Two things make this
+  fragile and both are commented in that file: `sizes` must describe the
+  CONTENT box (two pixels under the `h-[...]` on the `<li>`, which has a 1px
+  border), and a slot wider than the small file makes the browser silently
+  fetch the original instead — no error, just the weight back. Verify by
+  reading `img.currentSrc` after a clean load, not by trusting the markup. A
+  tab that already holds the large file keeps using it, so re-measure after a
+  reload.
 
 ## Tests
 

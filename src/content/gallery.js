@@ -54,10 +54,33 @@
  * claims only "nuestros torneos", plural. Move it once the category question
  * is settled. See src/content/tournaments.js.
  *
- * ── Processing ──────────────────────────────────────────────────────────────
+ * ── Processing and the two sizes ────────────────────────────────────────────
  * Instagram serves ~1100px. Each was downscaled to 800px wide at WebP q85
- * (never upscaled — asserted at conversion time), which is ~2.2x the largest
- * cell the grid renders. 85–156 KB each, all below the fold and lazy.
+ * (never upscaled — asserted at conversion time).
+ *
+ * That size is right for a desktop and twice what a phone can use, and until
+ * 2026-11-25 the phone was the one paying: `loading="lazy"` only defers until
+ * an image is NEAR the viewport, and in a horizontal strip all ten are near
+ * at once, so a phone pulled all 1,604 KB the moment Galería scrolled in.
+ *
+ * Each file now has a 640px-tall twin, `<name>-640.webp`. The set drops to
+ * 854 KB — 47% less — and a desktop still gets the full-size files. 900px was
+ * measured too and saved only 7%, because the originals are already about
+ * 1000px tall.
+ *
+ * 640 rather than the 600 that exactly matches the strip at DPR 2, because
+ * exact turned out to be dangerous. The first attempt used 600 and declared
+ * the slot from the <li>'s 300px height; the li has a 1px border top and
+ * bottom, so the image is really 298px tall. Two CSS pixels of error put
+ * gallery-01's requirement at 496px against a 495px file and the browser
+ * silently fell back to the 800px original — no warning, just the weight
+ * back. 640 leaves 30–60px of headroom, which costs 85 KB across the set and
+ * means a small future drift in these numbers cannot quietly undo the whole
+ * change.
+ *
+ * `srcSetFor` and `sizesFor` below derive both attributes from each record's
+ * own width and height, so the browser is told the real slot width per photo
+ * rather than one average that is wrong for every aspect ratio in the set.
  *
  * ── Order ───────────────────────────────────────────────────────────────────
  * Deliberate, and independent of the file numbering. Two rules: the trophy
@@ -151,6 +174,40 @@ export const gallery = [
     height: 1082,
   },
 ];
+
+/**
+ * The strip is a fixed height with automatic width, so a photo's displayed
+ * WIDTH is its aspect ratio times that height.
+ *
+ * These are the CONTENT heights, two pixels under the h-[300px]/h-[380px]/
+ * h-[420px] on the <li> in Gallery.jsx, because that element has a 1px border
+ * top and bottom. Getting this wrong by those two pixels is what made the
+ * browser reject a variant and reload the full-size file. If the h-[...]
+ * classes or the border change, change these with them.
+ */
+const STRIP_HEIGHTS = { base: 298, sm: 378, lg: 418 };
+
+/** @param {GalleryImage} image */
+export function srcSetFor(image) {
+  const small = image.src.replace(/\.webp$/, '-640.webp');
+  const smallWidth = Math.round((image.width * 640) / image.height);
+  return `${small} ${smallWidth}w, ${image.src} ${image.width}w`;
+}
+
+/**
+ * Width descriptors are useless without telling the browser how wide the slot
+ * actually is: left to its own devices it assumes 100vw and picks the large
+ * file every time.
+ * @param {GalleryImage} image
+ */
+export function sizesFor(image) {
+  const widthAt = (h) => Math.round((image.width * h) / image.height);
+  return [
+    `(min-width: 1024px) ${widthAt(STRIP_HEIGHTS.lg)}px`,
+    `(min-width: 640px) ${widthAt(STRIP_HEIGHTS.sm)}px`,
+    `${widthAt(STRIP_HEIGHTS.base)}px`,
+  ].join(', ');
+}
 
 /** Section copy. */
 export const gallerySection = {

@@ -1,5 +1,10 @@
 import { Instagram } from 'lucide-react';
-import { gallery, gallerySection } from '../content/gallery.js';
+import {
+  gallery,
+  gallerySection,
+  sizesFor,
+  srcSetFor,
+} from '../content/gallery.js';
 import { social } from '../content/site.js';
 
 /**
@@ -85,6 +90,8 @@ export default function Gallery() {
             >
               <img
                 src={image.src}
+                srcSet={srcSetFor(image)}
+                sizes={sizesFor(image)}
                 alt={image.alt}
                 width={image.width}
                 height={image.height}
