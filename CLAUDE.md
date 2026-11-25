@@ -276,16 +276,31 @@ desktop.
   removed in November as unsupported claims and came back on 2026-11-24 once
   evidenced. It still omits geo tags and `openingHoursSpecification` — those
   remain unsupported, and a wrong one is worse than none.
-- **`alfatenis.com` already exists** — a live WordPress site with the same
-  phone and email, which this project is meant to replace. Until the domain is
-  repointed, two sites would compete for the same brand, so `vercel.json`
-  serves `X-Robots-Tag: noindex, nofollow` **only when the host matches
-  `*.vercel.app`**. That condition is the point: when `alfatenis.com` is added
-  to this Vercel project it serves indexable with no edit, so nobody has to
-  remember to remove a `noindex` on launch day.
+- **`alfatenis.com` points here since 2026-11-25.** The apex is production,
+  `www` 308s to it, and Let's Encrypt issued the certificate within minutes.
+  The host-conditional `X-Robots-Tag` worked exactly as designed: it still
+  hides `alfa-tenis.vercel.app` and simply does not apply to the real domain,
+  so launch day needed no edit to `vercel.json`. Leave that rule in place —
+  it is what keeps the deployment URL out of search.
   **`robots.txt` stays `Allow: /` on purpose.** Blocking crawling would stop
   search engines from ever reading the `noindex`, which is how a staging URL
   gets stuck in the index instead of leaving it.
+- **DNS is at Namecheap BasicDNS, not HostGator.** It was moved on 2026-11-25
+  off `ns82/ns83.hostgator.mx`, and the zone was rebuilt by hand: 14 records,
+  verified against `dns1.registrar-servers.com` before the delegation
+  propagated. **Only `@` and `www` point at Vercel.** The other twelve still
+  point at HostGator's `162.241.60.208`, because the client's email lives
+  there — `mail`, `webmail`, `cpanel`, `ftp`, `whm`, `autodiscover`,
+  `autoconfig`, `cpcalendars`, `cpcontacts`, the MX, the SPF and a 409-char
+  DKIM key. Before the move `www`, `webmail`, `cpanel` and `ftp` were CNAMEs
+  to the apex; they had to become A records or they would have followed the
+  apex to Vercel and taken the client's webmail and hosting panel with it.
+  Namecheap also switches its own email forwarding on by default — five
+  `eforward` MX records that would have swallowed the mail silently. They were
+  removed. **Anyone touching this zone must keep those twelve records.**
+  The SPF deliberately dropped its `a` mechanism: with the apex now on Vercel,
+  `a` would authorise Vercel to send mail as @alfatenis.com. `mx` covers the
+  real sender.
 - **`vite.config.js` has `base: '/'`, which is correct for Vercel.** The old
   GitHub Pages project-site caveat no longer applies: the `gh-pages` branch was
   deleted on 2026-11-18 (archived locally as `gh-pages-archive`) and the Pages
