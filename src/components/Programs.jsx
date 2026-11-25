@@ -109,13 +109,21 @@ export default function Programs() {
             correspondence that is not established. See src/content/pricing.js. */}
         <p className="mt-8 text-sm text-slate-300">
           Los paquetes de clases y sus tarifas están en{' '}
-          <a
-            href="#precios"
-            className="inline-block rounded-sm py-1 font-bold text-brand-neon underline underline-offset-4 hover:text-brand-neon-hover"
-          >
-            Planes y tarifas
-          </a>
-          .
+          {/* The period is glued to the link. An inline-block is an atomic
+              box, so a line can break right after it even with no space
+              there — which left the full stop alone on its own line at
+              375px. `inline-block` itself has to stay: the py-1 that gives
+              this link its 28px touch target does nothing on an inline
+              element. */}
+          <span className="whitespace-nowrap">
+            <a
+              href="#precios"
+              className="inline-block rounded-sm py-1 font-bold text-brand-neon underline underline-offset-4 hover:text-brand-neon-hover"
+            >
+              Planes y tarifas
+            </a>
+            .
+          </span>
         </p>
       </div>
     </section>

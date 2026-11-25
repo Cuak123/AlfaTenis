@@ -163,6 +163,14 @@ WhatsApp CTAs must go through `waLink(key)` / `waLinkProps(key)` with a key from
   invisible if the animation does not run.
 - **Focus:** a global `:focus-visible` ring is set in `index.css`. Don't
   re-implement it per component; don't remove it.
+- **A link inside a paragraph is `inline-block py-1`** so it clears the 24px
+  touch minimum — vertical padding does nothing on an `inline` element. The
+  cost is that an inline-block is an atomic box, so a line can break right
+  after it even with no space there, and trailing punctuation ends up alone on
+  its own line. Wrap the link *and* the punctuation in a
+  `<span className="whitespace-nowrap">`. Both in-paragraph links on the site
+  (Programas → Precios, FAQ → WhatsApp) shipped with an orphaned full stop
+  until 2026-11-25.
 - **One disclosure pattern: native `<details>`.** Profesores, Programas,
   Competición and the FAQ all use it. No flip cards, no JS accordions. It has a
   visible affordance, works on touch and keyboard, needs no JavaScript, and —
