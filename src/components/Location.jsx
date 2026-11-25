@@ -20,6 +20,13 @@ import { waLinkProps } from '../lib/whatsapp.js';
  * Switching venues after loading the map keeps it loaded — the visitor already
  * opted in, and making them click again for each venue would be pure friction.
  *
+ * The placeholder does NOT reserve the loaded map's height on a phone, where
+ * the grid stacks and it would be 322px of empty box under the venue list —
+ * 0.4 of a phone screen showing an icon and a sentence. It keeps the full
+ * height from sm: up, where it sits beside the venue column and a short box
+ * would leave a hole. The iframe itself keeps its fixed height either way, so
+ * loading the map still lands it at a predictable size.
+ *
  * NOTE: the primary venue's name contains "FAP". That is the name the client
  * uses on their own tournament flyer and visitors need it to find the place.
  */
@@ -33,7 +40,7 @@ export default function Location() {
   return (
     <section
       id="ubicacion"
-      className="border-t border-white/10 bg-brand-dark py-20 sm:py-28"
+      className="border-t border-white/10 bg-brand-dark py-14 sm:py-28"
     >
       <div className="mx-auto w-full max-w-content px-5 sm:px-8">
         <div className="grid gap-10 lg:grid-cols-2 lg:items-start lg:gap-14">
@@ -144,7 +151,7 @@ export default function Location() {
                 className="h-[320px] w-full border-0 sm:h-[460px]"
               />
             ) : (
-              <div className="flex h-[320px] flex-col items-center justify-center gap-4 p-6 text-center sm:h-[460px]">
+              <div className="flex flex-col items-center justify-center gap-4 p-6 text-center sm:h-[460px]">
                 <MapPin aria-hidden="true" className="h-9 w-9 text-brand-neon" />
                 <p className="text-sm leading-relaxed text-slate-300">
                   El mapa se carga solo si lo pides: al abrirlo se conecta con

@@ -59,7 +59,7 @@ export default function Footer() {
             >
               Secciones
             </h2>
-            <ul className="mt-4 space-y-2.5">
+            <ul className="mt-4 grid grid-cols-2 gap-x-4 gap-y-1.5 sm:block sm:space-y-2.5">
               {readyNav.map((item) => (
                 <li key={item.id}>
                   <a

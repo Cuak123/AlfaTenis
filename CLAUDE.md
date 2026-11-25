@@ -179,9 +179,16 @@ WhatsApp CTAs must go through `waLink(key)` / `waLinkProps(key)` with a key from
   `scrollLeft` to the padding value. Keep strips inside the page container
   rather than bleeding them with their own padding.
 - **Page length is a measured budget.** The page was 22.6 phone screens on
-  2026-11-24 and is tracked down from there; the price must stay near the top
-  of the scroll. Measure with section heights over `window.innerHeight` at
-  375x812 before and after, and put both numbers in the commit.
+  2026-11-24 and is tracked down from there (13.2 on 2026-11-25); the price
+  must stay near the top of the scroll — it is at screen 3.5. Measure with
+  section heights over `window.innerHeight` at 375x812 before and after, and
+  put both numbers in the commit. Measure *inside* a section before cutting
+  it: twice now the obvious-looking target (bullet lists) turned out not to be
+  the bulk, and padding was.
+- **Every section is `py-14 sm:py-28`.** All nine share it, so the vertical
+  rhythm is one decision, not nine. At 375px that spacing alone was 1.8
+  screens of the page. A new section copies the same pair rather than picking
+  its own.
 - **Assets:** components import from `src/assets/**` (Vite only emits what is
   imported); `public/` files are referenced by absolute path and are **always
   published**.

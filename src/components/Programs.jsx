@@ -10,7 +10,7 @@ export default function Programs() {
   return (
     <section
       id="programas"
-      className="border-t border-white/10 bg-slate-900/40 py-20 sm:py-28"
+      className="border-t border-white/10 bg-slate-900/40 py-14 sm:py-28"
     >
       <div className="mx-auto w-full max-w-content px-5 sm:px-8">
         <div className="max-w-2xl">

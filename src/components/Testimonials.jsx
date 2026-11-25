@@ -38,7 +38,7 @@ export default function Testimonials() {
   return (
     <section
       id="testimonios"
-      className="border-t border-white/10 bg-brand-dark py-20 sm:py-28"
+      className="border-t border-white/10 bg-brand-dark py-14 sm:py-28"
     >
       <div className="mx-auto w-full max-w-content px-5 sm:px-8">
         <div className="max-w-2xl">
