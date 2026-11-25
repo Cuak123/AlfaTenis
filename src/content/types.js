@@ -117,6 +117,10 @@
 /**
  * @typedef {Object} Faq
  * @property {string} id
+ * @property {boolean} [sourced]  False when the answer states operational
+ *                                policy that no client document backs. Shows a
+ *                                dev-only badge; never changes what a visitor
+ *                                sees, because the answer may well be right.
  * @property {string} question
  * @property {string} answer
  */

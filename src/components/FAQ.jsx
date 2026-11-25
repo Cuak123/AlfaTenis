@@ -1,5 +1,6 @@
 import { ChevronDown } from 'lucide-react';
 import { faqs } from '../content/faqs.js';
+import PendingBadge from './PendingBadge.jsx';
 import { waLinkProps } from '../lib/whatsapp.js';
 
 /**
@@ -7,6 +8,12 @@ import { waLinkProps } from '../lib/whatsapp.js';
  * come for free, it works with JS disabled, and there is no open/closed state
  * to keep in sync. <summary> allows heading content, so the question stays an
  * <h3> and the document outline holds.
+ *
+ * Four of the five answers carry `sourced: false` and show a dev-only badge.
+ * This is the last pocket of unverified copy on the site: it promises material
+ * provided, automatic rain rescheduling, a 24-hour make-up rule, specific
+ * payment methods and "semiprivadas", none of which appears in any client
+ * document — and the last of those contradicts the client's own price flyers.
  */
 export default function FAQ() {
   return (
@@ -31,6 +38,15 @@ export default function FAQ() {
                 <summary className="flex cursor-pointer list-none items-center justify-between gap-4 p-5 [&::-webkit-details-marker]:hidden">
                   <h3 className="text-base font-bold text-white sm:text-lg">
                     {faq.question}
+                    {/* Dev-only, driven by `sourced: false` in the data. These
+                        answers came from the same build that invented the
+                        prices, and several state operational policy no client
+                        document backs. They may well be right, so they stay
+                        on the page — but nobody should read them here and
+                        assume they were confirmed. */}
+                    {faq.sourced === false ? (
+                      <PendingBadge label="Sin fuente" />
+                    ) : null}
                   </h3>
                   <ChevronDown
                     aria-hidden="true"
