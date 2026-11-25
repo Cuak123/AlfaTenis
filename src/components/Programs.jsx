@@ -1,4 +1,4 @@
-import { ArrowRight, Baby, Check, Users, Zap } from 'lucide-react';
+import { ArrowRight, Baby, Check, ChevronDown, Users, Zap } from 'lucide-react';
 import { programs } from '../content/programs.js';
 import { waLinkProps } from '../lib/whatsapp.js';
 import PendingBadge from './PendingBadge.jsx';
@@ -25,7 +25,7 @@ export default function Programs() {
           </p>
         </div>
 
-        <ul className="mt-12 grid gap-5 sm:mt-16 lg:grid-cols-3 lg:gap-6">
+        <ul className="mt-10 grid gap-4 sm:mt-14 lg:grid-cols-3 lg:gap-5">
           {programs.map((program) => {
             const Icon = ICONS[program.icon];
             return (
@@ -54,20 +54,36 @@ export default function Programs() {
                   {program.summary}
                 </p>
 
-                <ul className="mt-5 space-y-2.5">
-                  {program.features.map((feature) => (
-                    <li
-                      key={feature}
-                      className="flex items-start gap-2.5 text-sm text-slate-200"
-                    >
-                      <Check
+                {/* Same <details> as Profesores, on purpose: one disclosure
+                    pattern across the page rather than a different one per
+                    section. The bullets are what someone reads once already
+                    interested; what they scan for — level, age, one line of
+                    summary — stays visible. */}
+                {program.features.length > 0 ? (
+                  <details className="group mt-4">
+                    <summary className="flex cursor-pointer list-none items-center justify-between gap-4 py-1 text-sm font-bold text-brand-neon [&::-webkit-details-marker]:hidden">
+                      Qué incluye
+                      <ChevronDown
                         aria-hidden="true"
-                        className="mt-0.5 h-4 w-4 shrink-0 text-brand-neon"
+                        className="h-4 w-4 shrink-0 transition-transform duration-200 group-open:rotate-180"
                       />
-                      <span>{feature}</span>
-                    </li>
-                  ))}
-                </ul>
+                    </summary>
+                    <ul className="mt-3 space-y-2.5">
+                      {program.features.map((feature) => (
+                        <li
+                          key={feature}
+                          className="flex items-start gap-2.5 text-sm text-slate-200"
+                        >
+                          <Check
+                            aria-hidden="true"
+                            className="mt-0.5 h-4 w-4 shrink-0 text-brand-neon"
+                          />
+                          <span>{feature}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </details>
+                ) : null}
 
                 <a
                   {...waLinkProps(program.messageKey)}

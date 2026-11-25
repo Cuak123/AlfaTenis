@@ -1,4 +1,4 @@
-import { ArrowRight, Calendar, Check, Clock, MapPin, Medal } from 'lucide-react';
+import { ArrowRight, Calendar, Check, ChevronDown, Clock, MapPin, Medal } from 'lucide-react';
 import { competitionSection, latestTournament } from '../content/tournaments.js';
 import { waLinkProps } from '../lib/whatsapp.js';
 import PendingBadge from './PendingBadge.jsx';
@@ -94,21 +94,11 @@ export default function Competition() {
             </dl>
           </div>
 
-          <div className="grid gap-8 p-6 sm:p-8 lg:grid-cols-2 lg:gap-12">
-            <div>
-              <h4 className="text-xs font-semibold uppercase tracking-wider text-slate-400">
-                Formato de competencia
-              </h4>
-              <ul className="mt-4 space-y-2.5">
-                {t.format.map((rule) => (
-                  <li key={rule} className="flex items-start gap-2.5 text-sm text-slate-200">
-                    <Check aria-hidden="true" className="mt-0.5 h-4 w-4 shrink-0 text-brand-neon" />
-                    <span>{rule}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-
+          <div className="p-6 sm:p-8">
+            {/* Prizes stay visible and the six format rules fold away. They are
+                not equivalent: the prizes are why someone would enter, the
+                rules are what they read after deciding to. Folding both would
+                leave the section with nothing but a date. */}
             <div>
               <h4 className="text-xs font-semibold uppercase tracking-wider text-slate-400">
                 Premios
@@ -128,6 +118,26 @@ export default function Competition() {
                 ))}
               </ul>
             </div>
+
+            {t.format.length > 0 ? (
+              <details className="group mt-6 border-t border-white/10 pt-4">
+                <summary className="flex cursor-pointer list-none items-center justify-between gap-4 py-1 text-sm font-bold text-brand-neon [&::-webkit-details-marker]:hidden">
+                  Formato de competencia
+                  <ChevronDown
+                    aria-hidden="true"
+                    className="h-4 w-4 shrink-0 transition-transform duration-200 group-open:rotate-180"
+                  />
+                </summary>
+                <ul className="mt-3 space-y-2.5">
+                  {t.format.map((rule) => (
+                    <li key={rule} className="flex items-start gap-2.5 text-sm text-slate-200">
+                      <Check aria-hidden="true" className="mt-0.5 h-4 w-4 shrink-0 text-brand-neon" />
+                      <span>{rule}</span>
+                    </li>
+                  ))}
+                </ul>
+              </details>
+            ) : null}
           </div>
         </div>
 
