@@ -55,15 +55,21 @@ export const social = {
  * Anchor targets must match a section `id` rendered on the page.
  * Only `inicio` exists so far — the rest land with their sections.
  */
+/**
+ * Must stay in the order App.jsx renders the sections: the footer lists these
+ * in two columns on a phone, where a link sitting several places from where
+ * the section actually is reads as an error. Precios and Testimonios were out
+ * of place here from before they existed as sections.
+ */
 export const nav = [
   { label: 'Inicio', id: 'inicio', ready: true },
   { label: 'Nosotros', id: 'nosotros', ready: true },
   { label: 'Programas', id: 'programas', ready: true },
+  { label: 'Precios', id: 'precios', ready: true },
   { label: 'Profesores', id: 'profesores', ready: true },
+  { label: 'Testimonios', id: 'testimonios', ready: true },
   { label: 'Competición', id: 'competicion', ready: true },
   { label: 'Galería', id: 'galeria', ready: true },
-  { label: 'Precios', id: 'precios', ready: true },
-  { label: 'Testimonios', id: 'testimonios', ready: true },
   { label: 'Ubicación', id: 'ubicacion', ready: true },
   { label: 'Contacto', id: 'contacto', ready: true },
 ];
