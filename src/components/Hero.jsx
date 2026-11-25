@@ -17,20 +17,33 @@ export default function Hero() {
       id="inicio"
       className="relative isolate flex min-h-[100svh] flex-col overflow-hidden"
     >
-      <img
-        src={hero.image.src}
-        alt={hero.image.alt}
-        width={hero.image.width}
-        height={hero.image.height}
-        loading="eager"
-        fetchPriority="high"
-        decoding="async"
-        /* The player sits at 31–48% of the photo's width. On a phone the image
-           is cropped hard on the horizontal axis, so x=40% is what keeps him in
-           frame; the vertical axis is fully covered there and does not matter.
-           From `sm` the 16:9 source nearly fills the box, so centre is fine. */
-        className="absolute inset-0 -z-20 h-full w-full object-cover object-[40%_center] sm:object-center"
-      />
+      {/* <picture>, not srcset: the phone file is a different CROP, not a
+          smaller rendition, and srcset may only choose between renditions of
+          the same frame. See hero.image.phone in src/content/hero.js for what
+          the crop is and why. The <img> stays the one that carries alt, the
+          dimensions and the loading hints — a <source> cannot. */}
+      <picture>
+        <source
+          media={hero.image.phone.media}
+          srcSet={hero.image.phone.src}
+          width={hero.image.phone.width}
+          height={hero.image.phone.height}
+        />
+        <img
+          src={hero.image.src}
+          alt={hero.image.alt}
+          width={hero.image.width}
+          height={hero.image.height}
+          loading="eager"
+          fetchPriority="high"
+          decoding="async"
+          /* object-center at every width now. Below `sm` the file is already
+             cropped to the player, so the old x=40% would shift him off
+             centre; from `sm` the 16:9 source nearly fills the box and centre
+             was already right. */
+          className="absolute inset-0 -z-20 h-full w-full object-cover object-center"
+        />
+      </picture>
 
       {/* Keeps the player readable while the copy sits on near-solid
           brand-dark. Bottom-up on mobile; from `sm` it runs right-to-left so the

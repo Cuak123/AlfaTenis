@@ -37,5 +37,29 @@ export const hero = {
     width: 1800,
     height: 1012,
     alt: 'Jugador de tenis a punto de golpear de derecha en una cancha de arcilla, con la pelota en el aire.',
+    /**
+     * Below `sm` the 16:9 photo is cropped so hard by object-cover that a
+     * phone sees only 26% of it — 467 of 1800 columns — while downloading all
+     * 229 KB. This is the same frame pre-cropped to what a phone already
+     * shows, 560 columns centred on the player, so nothing about the picture
+     * changes and 136 KB stop being sent.
+     *
+     * It does NOT make the hero sharper: the source has 1012 rows for 812 CSS
+     * pixels either way, so both land at 1.25 device pixels per CSS pixel on
+     * a DPR 2 phone. A genuinely sharper phone hero would have to be re-cut
+     * from the 4032x3024 originals in ~/alfa-tenis-fotos, which is a framing
+     * decision and not this.
+     *
+     * Art direction, so it needs <picture> + media, not srcset/sizes: the two
+     * files have different aspect ratios and srcset is only allowed to choose
+     * between renditions of the SAME crop.
+     */
+    phone: {
+      src: '/images/hero-forehand-phone.webp',
+      width: 560,
+      height: 1012,
+      /** Matches Tailwind's `sm` breakpoint: below it, use this file. */
+      media: '(max-width: 639px)',
+    },
   },
 };

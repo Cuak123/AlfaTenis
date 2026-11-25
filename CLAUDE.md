@@ -76,7 +76,8 @@ src/
   config/site.js      # LEGACY — only the orphan components still read this
   assets/             # imported images: Gallery/, Staff/, Testimonials/, Tournaments/
 public/               # copied verbatim to the site root — see the privacy note
-  images/             # hero-forehand.webp (1800px), og-image.jpg (1200x630)
+  images/             # hero-forehand.webp (1800px) + its 560px phone crop,
+                      # og-image.jpg (1200x630)
   images/coaches/     # three 384px headshots
   images/gallery/     # ten photos x2: the full size, plus a 640px-tall twin
   favicon.svg, apple-touch-icon.png, robots.txt, sitemap.xml
@@ -200,6 +201,19 @@ WhatsApp CTAs must go through `waLink(key)` / `waLinkProps(key)` with a key from
 - **Assets:** components import from `src/assets/**` (Vite only emits what is
   imported); `public/` files are referenced by absolute path and are **always
   published**.
+- **The hero ships as two different CROPS**, not two sizes: `<picture>` with a
+  `media` query, because below `sm` object-cover shows only 26% of the 16:9
+  frame and `srcset` may only choose between renditions of the same crop. The
+  phone file is that visible region, 560x1012, 93 KB against 229 KB. It is
+  **not** sharper — the source has 1012 rows either way, so both land at 1.25
+  device pixels per CSS pixel on a DPR 2 phone — it just stops sending the 74%
+  nobody sees. A genuinely sharper phone hero would need re-cutting from the
+  4032x3024 originals in `~/alfa-tenis-fotos`, which is a framing decision.
+  The crop costs contrast: the eyebrow's worst pixel went from 5.41:1 to
+  **4.69:1** against a 4.5 floor, verified pixel by pixel rather than sampled.
+  Darkening the mobile gradient (mid stop 62% -> 72%) would take it to 7.17:1,
+  and was measured and rejected — it buries the player, which is the one thing
+  the hero is for.
 - **Gallery photos ship in two sizes**, the original and a `-640.webp` twin,
   chosen by `srcset`/`sizes` from `srcSetFor()` and `sizesFor()` in
   `gallery.js`. A phone pulls 854 KB instead of 1,604 KB. Two things make this
